@@ -17,31 +17,31 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long id) {
-        return Storage.PRODUCTS.stream()
+        return Storage.products.stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst();
     }
 
     @Override
     public List<Product> getAll() {
-        return Storage.PRODUCTS;
+        return Storage.products;
     }
 
     @Override
     public Product update(Product product) {
-        IntStream.range(0, Storage.PRODUCTS.size())
-                .filter(index -> Storage.PRODUCTS.get(index).getId().equals(product.getId()))
-                .forEach(index -> Storage.PRODUCTS.set(index, product));
+        IntStream.range(0, Storage.products.size())
+                .filter(index -> Storage.products.get(index).getId().equals(product.getId()))
+                .forEach(index -> Storage.products.set(index, product));
         return product;
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return Storage.PRODUCTS.removeIf(product -> product.getId().equals(id));
+        return Storage.products.removeIf(product -> product.getId().equals(id));
     }
 
     @Override
     public boolean delete(Product product) {
-        return Storage.PRODUCTS.removeIf(productFromList -> productFromList.equals(product));
+        return Storage.products.removeIf(productFromList -> productFromList.equals(product));
     }
 }
