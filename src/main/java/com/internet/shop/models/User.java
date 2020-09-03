@@ -6,9 +6,8 @@ public class User {
     private String name;
     private Long id;
 
-    public User(Long id, String name,
+    public User(String name,
                 String login, String password) {
-        this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
