@@ -18,8 +18,7 @@ public class MainApp {
         productService.create(diorProduct);
         productService.create(limecrimeProduct);
         System.out.println("All products:");
-        productService
-                .getAll()
+        productService.getAll()
                 .forEach(System.out::println);
 
         System.out.println("\nChanging price of Dior Foundation.");
@@ -31,8 +30,7 @@ public class MainApp {
                 + diorProductNew);
         productService.update(diorProductNew);
         System.out.println("All products:");
-        productService
-                .getAll()
+        productService.getAll()
                 .forEach(System.out::println);
 
         System.out.println("\nDeleting LIMECRIME Eyeshadow Palette."
@@ -40,8 +38,7 @@ public class MainApp {
                 + limecrimeProduct);
         productService.deleteById(limecrimeProduct.getId());
         System.out.println("All products:");
-        productService
-                .getAll()
+        productService.getAll()
                 .forEach(System.out::println);
     }
 }
