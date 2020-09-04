@@ -1,5 +1,6 @@
-package com.internet.shop.dao;
+package com.internet.shop.dao.impl;
 
+import com.internet.shop.dao.UserDao;
 import com.internet.shop.library.Dao;
 import com.internet.shop.models.User;
 import java.util.List;
