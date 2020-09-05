@@ -1,9 +1,10 @@
-package com.internet.shop.storeservice;
+package com.internet.shop.storeservice.impl;
 
 import com.internet.shop.dao.ProductDao;
 import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
 import com.internet.shop.models.Product;
+import com.internet.shop.storeservice.ProductService;
 import java.util.List;
 
 @Service

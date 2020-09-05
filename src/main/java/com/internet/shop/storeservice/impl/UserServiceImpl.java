@@ -1,7 +1,8 @@
-package com.internet.shop.storeservice;
+package com.internet.shop.storeservice.impl;
 
 import com.internet.shop.library.Service;
 import com.internet.shop.models.User;
+import com.internet.shop.storeservice.UserService;
 import java.util.List;
 
 @Service
