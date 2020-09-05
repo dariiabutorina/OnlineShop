@@ -1,1 +1,2 @@
-# OnlineShop
+# Online Shop
+High-quality cosmetics
