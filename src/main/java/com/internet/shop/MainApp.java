@@ -13,10 +13,10 @@ public class MainApp {
         ProductService productService = (ProductService) INJECTOR.getInstance(ProductService.class);
         Product diorProduct = new Product("Dior Backstage Foundation",
                 BigDecimal.valueOf(2000.0));
-        Product limecrimeProduct = new Product("LIMECRIME Nude Eyeshadow Palette",
+        Product limeCrimeProduct = new Product("LIMECRIME Nude Eyeshadow Palette",
                 BigDecimal.valueOf(700.0));
         productService.create(diorProduct);
-        productService.create(limecrimeProduct);
+        productService.create(limeCrimeProduct);
         System.out.println("All products:");
         productService.getAll()
                 .forEach(System.out::println);
@@ -35,8 +35,8 @@ public class MainApp {
 
         System.out.println("\nDeleting LIMECRIME Eyeshadow Palette."
                 + "\nLIMECRIME product:\n"
-                + limecrimeProduct);
-        productService.deleteById(limecrimeProduct.getId());
+                + limeCrimeProduct);
+        productService.deleteById(limeCrimeProduct.getId());
         System.out.println("All products:");
         productService.getAll()
                 .forEach(System.out::println);
