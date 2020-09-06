@@ -7,11 +7,11 @@ import java.util.Optional;
 public interface UserDao {
     User create(User user);
 
-    Optional<User> getById(Long id);
+    Optional<User> get(Long id);
 
     User update(User user);
 
-    List<User> getAllProducts();
+    List<User> getAllUsers();
 
     boolean deleteById(Long id);
 

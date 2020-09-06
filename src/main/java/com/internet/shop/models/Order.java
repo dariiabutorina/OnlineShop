@@ -32,4 +32,13 @@ public class Order {
     public Long getUserId() {
         return userId;
     }
+
+    @Override
+    public String toString() {
+        return "\nOrder { "
+                + "id = " + id
+                + " , userId = " + userId
+                + " , \nproducts = " + products
+                + " }";
+    }
 }
