@@ -10,7 +10,7 @@ public interface UserService {
 
     User update(User user);
 
-    List<User> getAllProducts();
+    List<User> getAll();
 
     boolean deleteById(Long id);
 

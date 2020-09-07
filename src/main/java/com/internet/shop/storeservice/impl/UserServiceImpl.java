@@ -1,5 +1,7 @@
 package com.internet.shop.storeservice.impl;
 
+import com.internet.shop.dao.UserDao;
+import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
 import com.internet.shop.models.User;
 import com.internet.shop.storeservice.UserService;
@@ -7,33 +9,36 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Inject
+    private UserDao userDao;
+
     @Override
     public User create(User user) {
-        return null;
+        return userDao.create(user);
     }
 
     @Override
     public User getById(Long id) {
-        return null;
+        return userDao.get(id).get();
     }
 
     @Override
     public User update(User user) {
-        return null;
+        return userDao.update(user);
     }
 
     @Override
-    public List<User> getAllProducts() {
-        return null;
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 
     @Override
     public boolean deleteById(Long id) {
-        return false;
+        return userDao.deleteById(id);
     }
 
     @Override
     public boolean delete(User user) {
-        return false;
+        return userDao.delete(user);
     }
 }

@@ -8,8 +8,7 @@ public class ShoppingCart {
     private Long id;
     private Long userId;
 
-    public ShoppingCart(Long id, Long userId) {
-        this.id = id;
+    public ShoppingCart(Long userId) {
         this.userId = userId;
         products = new ArrayList<>();
     }
@@ -46,5 +45,18 @@ public class ShoppingCart {
                 .filter(product -> product.getId().equals(id))
                 .findFirst()
                 .get();
+    }
+
+    public void clear() {
+        products.clear();
+    }
+
+    @Override
+    public String toString() {
+        return "Shopping Cart { "
+                + "id = " + id
+                + " , userId = " + userId
+                + " ,\nproducts = " + products
+                + " }";
     }
 }
