@@ -4,7 +4,10 @@ import com.internet.shop.dao.ShoppingCartDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.library.Dao;
 import com.internet.shop.models.ShoppingCart;
+import com.internet.shop.models.User;
+
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
@@ -23,8 +26,21 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
+    public ShoppingCart update(ShoppingCart shoppingCart) {
+        IntStream.range(0, Storage.shoppingCarts.size())
+                .filter(index -> Storage.shoppingCarts
+                        .get(index)
+                        .getId()
+                        .equals(shoppingCart.getId()))
+                .forEach(index -> Storage.shoppingCarts
+                        .set(index, shoppingCart));
+        return shoppingCart;
+    }
+
+    @Override
     public void clear(ShoppingCart shoppingCart) {
         shoppingCart.clear();
+        update(shoppingCart);
     }
 
     @Override

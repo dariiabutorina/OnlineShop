@@ -4,9 +4,12 @@ import com.internet.shop.dao.OrderDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.library.Dao;
 import com.internet.shop.models.Order;
+import com.internet.shop.models.ShoppingCart;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
@@ -23,6 +26,18 @@ public class OrderDaoImpl implements OrderDao {
                 .filter(order -> order.getId()
                         .equals(id))
                 .findFirst();
+    }
+
+    @Override
+    public Order update(Order order) {
+        IntStream.range(0, Storage.orders.size())
+                .filter(index -> Storage.orders
+                        .get(index)
+                        .getId()
+                        .equals(order.getId()))
+                .forEach(index -> Storage.orders
+                        .set(index, order));
+        return order;
     }
 
     @Override

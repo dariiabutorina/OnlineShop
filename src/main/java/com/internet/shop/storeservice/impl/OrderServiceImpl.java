@@ -1,6 +1,7 @@
 package com.internet.shop.storeservice.impl;
 
 import com.internet.shop.dao.OrderDao;
+import com.internet.shop.dao.ShoppingCartDao;
 import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
 import com.internet.shop.models.Order;
