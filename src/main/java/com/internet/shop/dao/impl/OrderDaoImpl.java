@@ -11,12 +11,10 @@ import java.util.stream.Collectors;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
+
     @Override
-    public Order completeOrder(ShoppingCart shoppingCart) {
-        Order order = new Order(shoppingCart.getUserId());
-        order.setProducts(List.copyOf(shoppingCart.getAllProducts()));
+    public Order create(Order order) {
         Storage.addOrder(order);
-        shoppingCart.clear();
         return order;
     }
 
