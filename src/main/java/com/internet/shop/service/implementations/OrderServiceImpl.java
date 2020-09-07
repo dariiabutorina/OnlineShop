@@ -1,12 +1,12 @@
-package com.internet.shop.storeservice.impl;
+package com.internet.shop.service.implementations;
 
-import com.internet.shop.dao.OrderDao;
+import com.internet.shop.dao.interfaces.OrderDao;
 import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
 import com.internet.shop.models.Order;
 import com.internet.shop.models.ShoppingCart;
-import com.internet.shop.storeservice.OrderService;
-import com.internet.shop.storeservice.ShoppingCartService;
+import com.internet.shop.service.interfaces.OrderService;
+import com.internet.shop.service.interfaces.ShoppingCartService;
 import java.util.List;
 
 @Service
@@ -27,8 +27,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order create(Order order) {
+        return orderDao.create(order);
+    }
+
+    @Override
     public Order get(Long id) {
-        return orderDao.getById(id).get();
+        return orderDao.get(id).get();
     }
 
     @Override
@@ -39,6 +44,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAll() {
         return orderDao.getAll();
+    }
+
+    @Override
+    public Order update(Order order) {
+        return orderDao.update(order);
     }
 
     @Override
