@@ -36,15 +36,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public void clear(ShoppingCart shoppingCart) {
-        shoppingCart.clear();
-        update(shoppingCart);
-    }
-
-    @Override
-    public boolean deleteCart(ShoppingCart shoppingCart) {
-        return Storage.shoppingCarts
-                .removeIf(existingCart -> existingCart.getId()
-                        .equals(shoppingCart.getId()));
+    public boolean delete(ShoppingCart shoppingCart) {
+        return Storage.shoppingCarts.removeIf(existingCart -> existingCart.getId().equals(shoppingCart.getId()));
     }
 }

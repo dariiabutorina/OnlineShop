@@ -11,7 +11,7 @@ public interface UserDao {
 
     User update(User user);
 
-    List<User> getAllUsers();
+    List<User> getAll();
 
     boolean deleteById(Long id);
 

@@ -30,7 +30,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void clear(ShoppingCart shoppingCart) {
-        shoppingCartDao.clear(shoppingCart);
+        shoppingCart.clear();
+        shoppingCartDao.update(shoppingCart);
     }
 
     @Override
@@ -44,6 +45,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public boolean deleteCart(ShoppingCart shoppingCart) {
-        return shoppingCartDao.deleteCart(shoppingCart);
+        return shoppingCartDao.delete(shoppingCart);
     }
 }
