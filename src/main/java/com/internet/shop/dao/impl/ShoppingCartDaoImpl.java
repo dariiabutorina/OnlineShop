@@ -4,8 +4,6 @@ import com.internet.shop.dao.ShoppingCartDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.library.Dao;
 import com.internet.shop.models.ShoppingCart;
-import com.internet.shop.models.User;
-
 import java.util.Optional;
 import java.util.stream.IntStream;
 
