@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Top MakeUp Tip - Online Cosmetics Store</title>
 </head>
 <body>
-<h1>Hello, world!</h1>
+    <h1>Hello, world!</h1>
 </body>
 </html>
