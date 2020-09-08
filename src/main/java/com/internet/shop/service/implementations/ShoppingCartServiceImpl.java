@@ -1,11 +1,12 @@
-package com.internet.shop.storeservice.impl;
+package com.internet.shop.service.implementations;
 
-import com.internet.shop.dao.ShoppingCartDao;
+import com.internet.shop.dao.interfaces.ShoppingCartDao;
 import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
 import com.internet.shop.models.Product;
 import com.internet.shop.models.ShoppingCart;
-import com.internet.shop.storeservice.ShoppingCartService;
+import com.internet.shop.service.interfaces.ShoppingCartService;
+import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -15,6 +16,31 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
         return shoppingCartDao.create(shoppingCart);
+    }
+
+    @Override
+    public ShoppingCart get(Long id) {
+        return shoppingCartDao.get(id).get();
+    }
+
+    @Override
+    public List<ShoppingCart> getAll() {
+        return shoppingCartDao.getAll();
+    }
+
+    @Override
+    public ShoppingCart update(ShoppingCart shoppingCart) {
+        return shoppingCartDao.update(shoppingCart);
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        return shoppingCartDao.deleteById(id);
+    }
+
+    @Override
+    public boolean delete(ShoppingCart shoppingCart) {
+        return shoppingCartDao.delete(shoppingCart);
     }
 
     @Override

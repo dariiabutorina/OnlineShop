@@ -1,6 +1,6 @@
-package com.internet.shop.dao.impl;
+package com.internet.shop.dao.implementations;
 
-import com.internet.shop.dao.UserDao;
+import com.internet.shop.dao.interfaces.UserDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.library.Dao;
 import com.internet.shop.models.User;

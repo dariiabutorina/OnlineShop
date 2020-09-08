@@ -1,6 +1,6 @@
-package com.internet.shop.dao.impl;
+package com.internet.shop.dao.implementations;
 
-import com.internet.shop.dao.OrderDao;
+import com.internet.shop.dao.interfaces.OrderDao;
 import com.internet.shop.db.Storage;
 import com.internet.shop.library.Dao;
 import com.internet.shop.models.Order;
@@ -19,7 +19,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Optional<Order> getById(Long id) {
+    public Optional<Order> get(Long id) {
         return Storage.orders.stream()
                 .filter(order -> order.getId().equals(id))
                 .findFirst();

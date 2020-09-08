@@ -1,19 +1,12 @@
-package com.internet.shop.storeservice;
+package com.internet.shop.service.interfaces;
 
 import com.internet.shop.models.Order;
 import com.internet.shop.models.ShoppingCart;
+import com.internet.shop.service.GenericService;
 import java.util.List;
 
-public interface OrderService {
+public interface OrderService extends GenericService<Order, Long> {
     Order completeOrder(ShoppingCart shoppingCart);
 
-    Order get(Long id);
-
     List<Order> getUsersOrders(Long userId);
-
-    List<Order> getAll();
-
-    boolean deleteById(Long id);
-
-    boolean delete(Order order);
 }
