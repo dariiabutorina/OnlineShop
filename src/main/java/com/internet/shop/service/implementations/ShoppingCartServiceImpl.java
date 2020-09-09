@@ -3,8 +3,8 @@ package com.internet.shop.service.implementations;
 import com.internet.shop.dao.interfaces.ShoppingCartDao;
 import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
-import com.internet.shop.models.Product;
-import com.internet.shop.models.ShoppingCart;
+import com.internet.shop.model.Product;
+import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import java.util.List;
 

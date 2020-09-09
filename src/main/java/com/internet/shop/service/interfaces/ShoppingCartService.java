@@ -1,7 +1,7 @@
 package com.internet.shop.service.interfaces;
 
-import com.internet.shop.models.Product;
-import com.internet.shop.models.ShoppingCart;
+import com.internet.shop.model.Product;
+import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.service.GenericService;
 
 public interface ShoppingCartService extends GenericService<ShoppingCart, Long> {

@@ -3,7 +3,7 @@ package com.internet.shop.service.implementations;
 import com.internet.shop.dao.interfaces.UserDao;
 import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
-import com.internet.shop.models.User;
+import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.UserService;
 import java.util.List;
 

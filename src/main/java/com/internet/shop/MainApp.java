@@ -1,10 +1,10 @@
 package com.internet.shop;
 
 import com.internet.shop.library.Injector;
-import com.internet.shop.models.Order;
-import com.internet.shop.models.Product;
-import com.internet.shop.models.ShoppingCart;
-import com.internet.shop.models.User;
+import com.internet.shop.model.Order;
+import com.internet.shop.model.Product;
+import com.internet.shop.model.ShoppingCart;
+import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.OrderService;
 import com.internet.shop.service.interfaces.ProductService;
 import com.internet.shop.service.interfaces.ShoppingCartService;
