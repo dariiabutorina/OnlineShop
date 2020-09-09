@@ -7,7 +7,7 @@
 <body>
 <h1> All Products </h1>
     <table border = "1">
-        <form method = "post" action = "${pageContext.request.contextPath}/registration">
+        <form method = "post" action = "${pageContext.request.contextPath}/order">
         <tr>
             <th>ID</th>
             <th>Name</th>
