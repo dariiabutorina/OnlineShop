@@ -4,7 +4,6 @@
 <head>
     <title> Products </title>
 </head>
-<body>
 <h1> All Products </h1>
 <table border = "1">
     <tr>
@@ -30,6 +29,7 @@
     </c:forEach>
 </table>
 <br>
+<a href = "${pageContext.request.contextPath}/products/add"> Add New Product </a>
 <br>
 <a href = "${pageContext.request.contextPath}/welcome"> Main Menu </a>
 </body>

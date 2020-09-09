@@ -75,6 +75,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <servlet-class>com.internet.shop.controller.product.AddProductController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/products/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>cartAllProduct</servlet-name>
         <servlet-class>com.internet.shop.controller.cart.ShopCartProductsController</servlet-class>
     </servlet>
