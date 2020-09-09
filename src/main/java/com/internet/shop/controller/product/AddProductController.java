@@ -2,17 +2,13 @@ package com.internet.shop.controller.product;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
-import com.internet.shop.model.ShoppingCart;
-import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.ProductService;
-import com.internet.shop.service.interfaces.ShoppingCartService;
-
+import java.io.IOException;
+import java.math.BigDecimal;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.math.BigDecimal;
 
 public class AddProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
