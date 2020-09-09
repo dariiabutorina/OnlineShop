@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UsersController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("com.internet.shop");
-    private static final UserService userService =
-            (UserService) INJECTOR.getInstance(UserService.class);
+    private static final Injector injector = Injector.getInstance("com.internet.shop");
+    private static UserService userService =
+            (UserService) injector.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

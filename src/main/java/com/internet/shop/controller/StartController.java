@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class StartController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("com.internet.shop");
-    private static final ProductService productService =
-            (ProductService) INJECTOR.getInstance(ProductService.class);
+    private static final Injector injector = Injector.getInstance("com.internet.shop");
+    private static ProductService productService =
+            (ProductService) injector.getInstance(ProductService.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
