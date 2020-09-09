@@ -1,0 +1,98 @@
+<web-app xmlns = "http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version = "3.1">
+
+    <servlet>
+        <servlet-name>start</servlet-name>
+        <servlet-class>com.internet.shop.controller.StartController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>start</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <servlet-class>com.internet.shop.controller.WelcomeController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>com.internet.shop.controller.RegistrationController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allUsers</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.UsersController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allUsers</servlet-name>
+        <url-pattern>/users/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.DeleteUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/users/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProducts</servlet-name>
+        <servlet-class>com.internet.shop.controller.product.ProductsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allProducts</servlet-name>
+        <url-pattern>/products/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>buyProduct</servlet-name>
+        <servlet-class>com.internet.shop.controller.product.BuyProductController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>buyProduct</servlet-name>
+        <url-pattern>/products/buy</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cartAllProduct</servlet-name>
+        <servlet-class>com.internet.shop.controller.cart.ShopCartProductsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cartAllProduct</servlet-name>
+        <url-pattern>/shopping-cart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cartDelProduct</servlet-name>
+        <servlet-class>com.internet.shop.controller.cart.ShopCartDelProductController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cartDelProduct</servlet-name>
+        <url-pattern>/shopping-cart/delete</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
