@@ -8,7 +8,6 @@
 <%@include file="../header.jsp"%>
 <h1> All Products </h1>
     <table border = "1">
-        <form method = "post" action = "${pageContext.request.contextPath}/order">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -32,8 +31,7 @@
         </c:forEach>
     </table>
 <br>
-<button type = "submit"> Complete order </button>
-</form>
+<a href="${pageContext.request.contextPath}/orders/complete?cartId=${cartId}">Create order</a>
 <br>
 <br>
 <a href = "${pageContext.request.contextPath}/welcome"> Main Menu </a>
