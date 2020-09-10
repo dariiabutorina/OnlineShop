@@ -75,4 +75,5 @@
         <servlet-name>cartAllProduct</servlet-name>
         <url-pattern>/shopping-cart</url-pattern>
     </servlet-mapping>
+
 </web-app>

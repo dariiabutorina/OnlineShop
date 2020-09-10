@@ -71,6 +71,7 @@
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
