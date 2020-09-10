@@ -35,12 +35,8 @@ public class StartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        printTime(req);
-        req.getRequestDispatcher("/WEB-INF/views/start.jsp").forward(req, resp);
-    }
-
-    public static void printTime(HttpServletRequest req) {
         String timeValue = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
         req.setAttribute("time", timeValue);
+        req.getRequestDispatcher("/WEB-INF/views/start.jsp").forward(req, resp);
     }
 }
