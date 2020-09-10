@@ -4,6 +4,7 @@
     <title> Add Product </title>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 <br>
 <h1>Hello!</h1>
 <h2>Please, provide required information below.</h2>
@@ -15,8 +16,8 @@
             <th> Price: </th>
         </tr>
         <tr>
-            <th> <input type = "text" name = "name"> </th>
-            <th> <input type = "text" name = "price"> </th>
+            <th> <input type = "text" name = "name" required> </th>
+            <th> <input type = "text" name = "price" required> </th>
         </tr>
     </table>
     <br>

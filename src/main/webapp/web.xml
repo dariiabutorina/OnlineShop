@@ -18,7 +18,7 @@
         <servlet-name>index</servlet-name>
         <servlet-class>com.internet.shop.controller.WelcomeController</servlet-class>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/welcome</url-pattern>
@@ -93,16 +93,4 @@
         <servlet-name>cartAllProduct</servlet-name>
         <url-pattern>/shopping-cart</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>cartDelProduct</servlet-name>
-        <servlet-class>com.internet.shop.controller.cart.ShopCartDelProductController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>cartDelProduct</servlet-name>
-        <url-pattern>/shopping-cart/delete</url-pattern>
-    </servlet-mapping>
-
-
 </web-app>

@@ -4,6 +4,8 @@
 <head>
     <title> Products </title>
 </head>
+<body>
+<%@include file="../header.jsp"%>
 <h1> All Products </h1>
 <table border = "1">
     <tr>

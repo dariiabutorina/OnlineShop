@@ -5,6 +5,7 @@
 </head>
 
 <body>
+<%@include file="header.jsp"%>
     <br>
     <h1>Hello!</h1>
     <h2>Please, provide required information below.</h2>
@@ -18,10 +19,10 @@
                 <th> Repeat the password: </th>
             </tr>
             <tr>
-                <th> <input type = "text" name = "name"> </th>
-                <th> <input type = "text" name = "login"> </th>
-                <th> <input type = "password" name = "password"> </th>
-                <th> <input type = "password" name = "password-repeat"> </th>
+                <th> <input type = "text" name = "name" required> </th>
+                <th> <input type = "text" name = "login" required> </th>
+                <th> <input type = "password" name = "password" required> </th>
+                <th> <input type = "password" name = "password-repeat" required> </th>
             </tr>
         </table>
     <br>

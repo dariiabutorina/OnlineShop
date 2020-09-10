@@ -4,6 +4,7 @@
     <title>Top Store - Best Cosmetics</title>
 </head>
 <body>
+<%@include file="header.jsp"%>
     <h5>${time}</h5>
     <h1>Hello, makeup lover!</h1>
     <h2> Select and click on the button for redirection. </h2>
