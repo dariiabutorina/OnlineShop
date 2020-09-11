@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UsersOrdersController extends HttpServlet {
+public class GetUsersOrdersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private static final Long USER_ID = 1L;
     private final OrderService orderService =

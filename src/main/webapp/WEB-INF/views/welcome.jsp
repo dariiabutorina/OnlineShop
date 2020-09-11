@@ -19,6 +19,6 @@
     <br>
     <a href = "${pageContext.request.contextPath}/orders/all"> All Orders - Admin </a>
     <br>
-    <a href = "${pageContext.request.contextPath}/orders"> User's Orders </a>
+    <a href = "${pageContext.request.contextPath}/user/orders"> User's Orders </a>
 </body>
 </html>

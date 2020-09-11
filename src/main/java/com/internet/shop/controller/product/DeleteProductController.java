@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    private static ProductService productService =
+    private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
 
     @Override
