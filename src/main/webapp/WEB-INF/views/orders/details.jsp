@@ -1,12 +1,12 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType = "text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title> Products </title>
+    <title>Users</title>
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<h1> All Products </h1>
+<h1> Order Details </h1>
 <table border = "1">
     <tr>
         <th>ID</th>
@@ -24,12 +24,11 @@
             <td>
                 <c:out value="${product.price}"/>
             </td>
-            <td>
-                <a href = "${pageContext.request.contextPath}/products/buy?id=${product.id}"> Buy </a>
-            </td>
         </tr>
     </c:forEach>
 </table>
+<br>
+<h5> Total: ${sum}</h5>
 <br>
 <a href = "${pageContext.request.contextPath}/welcome"> Main Menu </a>
 </body>

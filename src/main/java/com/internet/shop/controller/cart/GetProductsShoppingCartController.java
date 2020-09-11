@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShopCartProductsController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("com.internet.shop");
+public class GetProductsShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
-    private ShoppingCartService shoppingCartService =
+    private static final Injector injector = Injector.getInstance("com.internet.shop");
+    private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     @Override
