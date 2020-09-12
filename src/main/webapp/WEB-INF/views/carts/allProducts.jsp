@@ -6,34 +6,41 @@
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<h1> All Products </h1>
-    <table border = "1">
+<div class="container" align="center" style="text-align: center">
+<h2> My Shopping Cart </h2>
+<table class="table table-hover" style="width: 1200px; text-align: center">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var = "product" items = "${products}">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
+            <th scope="row">
+                <c:out value="${product.id}"/>
+            </th>
+            <td style="text-align: center">
+                <c:out value="${product.name}"/>
+            </td>
+            <td style="text-align: center">
+                <c:out value="${product.price}"/>
+            </td>
+            <td style="text-align: center">
+                <a href="${pageContext.request.contextPath}/shopping-cart/delete?id=${product.id}"
+                   class="btn btn-light">Delete</a>
+            </td>
         </tr>
-        <c:forEach var = "product" items = "${products}">
-            <tr>
-                <td>
-                    <c:out value="${product.id}"/>
-                </td>
-                <td>
-                    <c:out value="${product.name}"/>
-                </td>
-                <td>
-                    <c:out value="${product.price}"/>
-                </td>
-                <td>
-                    <a href = "${pageContext.request.contextPath}/shopping-cart/delete?id=${product.id}"> Delete </a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+    </c:forEach>
+    </tbody>
+</table>
 <br>
-<a href="${pageContext.request.contextPath}/orders/complete?cartId=${cartId}">Create order</a>
-<br>
-<br>
-<a href = "${pageContext.request.contextPath}/welcome"> Main Menu </a>
+<a href="${pageContext.request.contextPath}/orders/complete?cartId=${cartId}"
+   class="btn btn-light">Create order</a>
+<a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+</div>
 </body>
 </html>

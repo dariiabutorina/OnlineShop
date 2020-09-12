@@ -6,30 +6,38 @@
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<h1> Order Details </h1>
-<table border = "1">
+<br>
+<div class="container" align="center" style="text-align: center">
+<h2> Order's Details </h2>
+<br>
+<table class="table table-hover" style="width: 1200px; text-align: center">
+    <thead class="thead-light">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
     </tr>
+    </thead>
+    <tbody>
     <c:forEach var = "product" items = "${products}">
         <tr>
-            <td>
+            <th scope="row">
                 <c:out value="${product.id}"/>
-            </td>
-            <td>
+            </th>
+            <td style="text-align: center">
                 <c:out value="${product.name}"/>
             </td>
-            <td>
+            <td style="text-align: center">
                 <c:out value="${product.price}"/>
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
 <br>
-<h5> Total: ${sum}</h5>
-<br>
-<a href = "${pageContext.request.contextPath}/welcome"> Main Menu </a>
+<h5 style="text-align: center"> Total: ${sum}</h5>
+<a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+</div>
 </body>
 </html>

@@ -6,31 +6,43 @@
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<h1> All Orders </h1>
-<table border = "1">
+<br>
+<div class="container" align="center" style="text-align: center">
+<h2> All Orders </h2>
+<br>
+<table class="table table-hover" style="width: 1200px; text-align: center">
+    <thead class="thead-light">
     <tr>
-        <th>ID</th>
-        <th>User ID</th>
+        <th scope="col">Order ID</th>
+        <th scope="col">User ID</th>
+        <th scope="col"></th>
     </tr>
+    </thead>
+    <tbody>
     <c:forEach var="order" items="${orders}">
         <tr>
-            <td>
+            <th scope="row">
                 <c:out value="${order.id}"/>
-            </td>
-            <td>
+            </th>
+            <td style="text-align: center">
                 <c:out value="${order.userId}"/>
             </td>
-            <td>
-                <a href = "${pageContext.request.contextPath}/orders/details?id=${order.id}"> Details </a>
+            <td style="text-align: center">
+                <c:out value="${product.price}"/>
+            </td>
+            <td style="text-align: center">
+                <a href="${pageContext.request.contextPath}/orders/details?id=${order.id}"
+                   class="btn btn-light"> Details </a>
             </td>
             <td>
-                <a href = "${pageContext.request.contextPath}/orders/delete?id=${order.id}"> Delete </a>
+                <a href="${pageContext.request.contextPath}/orders/delete?id=${order.id}"
+                   class="btn btn-light"> Delete </a>
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
-<br>
-<br>
-<a href = "${pageContext.request.contextPath}/welcome"> Main Menu </a>
+<a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+</div>
 </body>
 </html>
