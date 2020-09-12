@@ -4,20 +4,12 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version = "3.1">
     <servlet>
-        <servlet-name>start</servlet-name>
-        <servlet-class>com.internet.shop.controller.StartController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>start</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>welcome</servlet-name>
         <servlet-class>com.internet.shop.controller.WelcomeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
-        <url-pattern>/welcome</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>registration</servlet-name>
@@ -28,8 +20,24 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>authorization</servlet-name>
+        <servlet-class>com.internet.shop.controller.AuthorizationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authorization</servlet-name>
+        <url-pattern>/authorization</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>userDetails</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.GetUserDetailsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userDetails</servlet-name>
+        <url-pattern>/user/details</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>allUsers</servlet-name>
-        <servlet-class>com.internet.shop.controller.user.UsersController</servlet-class>
+        <servlet-class>com.internet.shop.controller.user.GetAllUsersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allUsers</servlet-name>

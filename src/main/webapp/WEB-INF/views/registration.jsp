@@ -3,33 +3,40 @@
 <head>
     <title>Registration</title>
 </head>
-
 <body>
 <%@include file="header.jsp"%>
     <br>
+<div class="container" align="center" style="text-align: center">
     <h1>Hello!</h1>
-    <h2>Please, provide required information below.</h2>
+    <br>
+    <h2>Please, provide the required information below.</h2>
+    <br>
     <h4 style = "color: #dc143c"> ${message} </h4>
     <form method = "post" action = "${pageContext.request.contextPath}/registration">
-        <table border = "1">
-            <tr>
-                <th> Name: </th>
-                <th> Login: </th>
-                <th> Password: </th>
-                <th> Repeat the password: </th>
-            </tr>
-            <tr>
-                <th> <input type = "text" name = "name" required> </th>
-                <th> <input type = "text" name = "login" required> </th>
-                <th> <input type = "password" name = "password" required> </th>
-                <th> <input type = "password" name = "password-repeat" required> </th>
-            </tr>
-        </table>
-    <br>
-    <button type = "submit"> Sing up </button>
+        <label for="userName"> Name: </label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="userName"
+                   name = "name" required placeholder="Your name" width="450 px">
+        </div>
+        <label for="userLogin"> Login: </label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="userLogin"
+                   name = "login" required placeholder="Your login" width="450 px">
+        </div>
+        <label for="userPassword"> Password: </label>
+        <div class="form-group">
+            <input type="password" class="form-control" id="userPassword"
+                   name = "password" required placeholder="Your password" width="450 px">
+        </div>
+        <label for="repeatPassword"> Repeat the password: </label>
+        <div class="form-group">
+            <input type="password" class="form-control" id="repeatPassword"
+                   name = "password-repeat" required placeholder="Your password" width="450 px">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-light"> Sing up </button>
+        <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
     </form>
-    <br>
-    <br>
-    <a href = "${pageContext.request.contextPath}/"> Go Back </a>
+</div>
 </body>
 </html>
