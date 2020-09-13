@@ -32,7 +32,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td style="text-align: center">
-                <a href="${pageContext.request.contextPath}/products/buy?id=${product.id}" class="btn btn-light">Buy</a>
+                <a href="${pageContext.request.contextPath}/product/buy?id=${product.id}" class="btn btn-light">Buy</a>
             </td>
         </tr>
     </c:forEach>

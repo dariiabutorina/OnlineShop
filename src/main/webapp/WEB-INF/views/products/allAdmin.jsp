@@ -17,6 +17,7 @@
         <th scope="col">Name</th>
         <th scope="col">Price</th>
         <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -32,7 +33,11 @@
                 <c:out value="${product.price}"/>
             </td>
             <td style="text-align: center">
-                <a href="${pageContext.request.contextPath}/products/delete?id=${product.id}"
+                <a href="${pageContext.request.contextPath}/product/update?id=${product.id}"
+                   class="btn btn-light">Edit</a>
+            </td>
+            <td style="text-align: center">
+                <a href="${pageContext.request.contextPath}/product/delete?id=${product.id}"
                    class="btn btn-light">Delete</a>
             </td>
         </tr>
@@ -40,7 +45,7 @@
     </tbody>
 </table>
 <br>
-<a href="${pageContext.request.contextPath}/products/add" class="btn btn-light">Add New Product</a>
+<a href="${pageContext.request.contextPath}/product/add" class="btn btn-light">Add New Product</a>
 <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
 </div>
 </body>

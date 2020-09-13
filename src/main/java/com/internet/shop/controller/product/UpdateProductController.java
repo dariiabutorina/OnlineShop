@@ -10,15 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddProductController extends HttpServlet {
+public class UpdateProductController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
+    private Long id = 0L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/products/add.jsp").forward(req, resp);
+        id = Long.parseLong(req.getParameter("id"));
+        req.getRequestDispatcher("/WEB-INF/views/products/update.jsp").forward(req, resp);
     }
 
     @Override
@@ -30,11 +32,15 @@ public class AddProductController extends HttpServlet {
         if (name.length() == 0
                 || price.length() == 0) {
             req.setAttribute("message", "All the fields must be filled in.");
-            req.getRequestDispatcher("/WEB-INF/views/products/add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/products/update.jsp").forward(req, resp);
         }
 
         BigDecimal productPrice = BigDecimal.valueOf(Double.parseDouble(req.getParameter("price")));
-        productService.create(new Product(name, productPrice));
+        Product updatingProduct = productService.get(id);
+        updatingProduct.setId(id);
+        updatingProduct.setName(name);
+        updatingProduct.setPrice(productPrice);
+        productService.update(updatingProduct);
         resp.sendRedirect(req.getContextPath() + "/products/all/admin");
     }
 }

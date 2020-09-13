@@ -25,7 +25,7 @@
             background: url("https://i.imgur.com/kK0rr1z.png") no-repeat center #efefef;
             font-family: 'Chivo', sans-serif;
             font-weight: 300;
-            font-size: xx-large;
+            font-min-size: xx-large;
         }
         h1 {
             font-family: 'Playfair Display', serif;
@@ -37,7 +37,7 @@
         h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            font-size: xx-large;
+            font-min-size: xx-large;
         }
         html, body {
             margin: 0;

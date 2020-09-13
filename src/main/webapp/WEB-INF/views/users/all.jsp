@@ -37,7 +37,7 @@
                    class="btn btn-light">Details</a>
             </td>
             <td style="text-align: center">
-                <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}"
+                <a href="${pageContext.request.contextPath}/user/delete?id=${user.id}"
                    class="btn btn-light">Delete</a>
             </td>
             </tr>

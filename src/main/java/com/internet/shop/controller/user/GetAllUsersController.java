@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAllUsersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    private static UserService userService =
+    private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
 
     @Override

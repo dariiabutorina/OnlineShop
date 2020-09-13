@@ -30,7 +30,10 @@
             <td style="text-align: center">
                 <c:out value="${user.login}"/>
             </td>
-            <td></td>
+            <td style="text-align: center">
+                <a href="${pageContext.request.contextPath}/user/update?id=${user.id}"
+                   class="btn btn-light">Edit</a>
+            </td>
         </tr>
     </tbody>
 </table>

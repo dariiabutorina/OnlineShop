@@ -49,7 +49,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteUser</servlet-name>
-        <url-pattern>/users/delete</url-pattern>
+        <url-pattern>/user/delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>updateUser</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.UpdateUserDetailsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUser</servlet-name>
+        <url-pattern>/user/update</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>allProducts</servlet-name>
@@ -68,12 +76,20 @@
         <url-pattern>/products/all/admin</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>updateProduct</servlet-name>
+        <servlet-class>com.internet.shop.controller.product.UpdateProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateProduct</servlet-name>
+        <url-pattern>/product/update</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>deleteProductsAdmin</servlet-name>
         <servlet-class>com.internet.shop.controller.product.DeleteProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductsAdmin</servlet-name>
-        <url-pattern>/products/delete</url-pattern>
+        <url-pattern>/product/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>buyProduct</servlet-name>
@@ -81,7 +97,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>buyProduct</servlet-name>
-        <url-pattern>/products/buy</url-pattern>
+        <url-pattern>/product/buy</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>addProduct</servlet-name>
@@ -89,7 +105,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
-        <url-pattern>/products/add</url-pattern>
+        <url-pattern>/product/add</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>cartAllProduct</servlet-name>
