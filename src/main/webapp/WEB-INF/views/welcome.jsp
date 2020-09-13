@@ -1,10 +1,16 @@
-<%@ page contentType = "text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Top Store - Best Cosmetics</title>
 </head>
+<style>
+    .btn-light {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+    }
+</style>
+<%@include file="header.jsp" %>
 <body>
-<%@include file="header.jsp"%>
 <div style="text-align: center">
     <a class="btn btn-light" style="position: absolute; right: 10px; top: 10px"
        href="https://time.is">${time}</a>

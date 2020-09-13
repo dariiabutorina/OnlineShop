@@ -16,88 +16,84 @@
     <link href="https://fonts.googleapis.com/css?family=Chivo:300,700|Playfair+Display:700i" rel="stylesheet">
     <style>
         body {
-            background-color: white;
+            background: url("https://i.imgur.com/EPZYNpE.png?2");
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            position: absolute;
             font-family: 'Lora', serif;
             font-weight: 500;
         }
+
         .header {
             padding: 4%;
-            background: url("https://i.imgur.com/kK0rr1z.png") no-repeat center #efefef;
+            background: url("https://i.imgur.com/DrKx9jm.png?1") no-repeat center #efefef;
             font-family: 'Chivo', sans-serif;
             font-weight: 300;
-            font-min-size: xx-large;
         }
+
         h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             font-style: italic;
-            text-transform: uppercase;
-            font-min-size: xx-large;
         }
+
         h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            font-min-size: xx-large;
         }
+
         html, body {
             margin: 0;
             padding: 0;
         }
+
         .navbar {
             padding: 2%;
         }
     </style>
 </head>
 <body>
-<div class="header" style="text-align: center">
-    <h1>TOP STORE</h1>
-    <h4>High-quality cosmetics must-haves</h4>
+<div class="header" style="text-align: center; font-size: 20px">
+    <h1>Top Store</h1>
+    <h4><em>High-quality cosmetics must-haves</em></h4>
 </div>
-<div style="font-family: 'Montserrat', sans-serif">
-<div class="navbar navbar-expand-lg navbar-light bg-light">
-    <div style="text-transform: uppercase">
-    <ul class="navbar-nav" style="position: center; color: white">
+<div class="navbar navbar-expand-lg navbar-light bg-light"
+     style="font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-size: x-large">
+    <ul class="navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/products/all/admin">Products (Admin)</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/users/all">Users (Admin)</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/orders/all">Orders (Admin)</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My Orders</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/shopping-cart">Shopping cart</a>
         </li>
-        <li class="nav-item active" style="position: absolute; right: 290px">
+        <li class="nav-item active" style="position: absolute; right: 350px">
             <a class="nav-link" href="${pageContext.request.contextPath}/registration">Sign Up</a>
         </li>
-        <li><h6>|</h6></li>
-        <li class="nav-item active" style="position: absolute; right: 200px;">
+        <li class="nav-item active" style="position: absolute; right: 250px;">
             <a class="nav-link" href="${pageContext.request.contextPath}/authorization">Sign In</a>
         </li>
-        <li><h6>|</h6></li>
         <li class="nav-item active" style="position: absolute; right: 10px">
             <a class="nav-link" href="${pageContext.request.contextPath}/user/details?id=1">Account Details</a>
         </li>
     </ul>
-    </div>
-    </div>
 </div>
 </body>
 </html>
