@@ -1,7 +1,6 @@
 package com.internet.shop.model;
 
 public class User {
-    public static final User NULL_USER = new User(null, null, null);
     private final String login;
     private String password;
     private String name;
