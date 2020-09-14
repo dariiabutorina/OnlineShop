@@ -20,10 +20,9 @@
         text-align: center;
         background: rgba(0, 0, 0, 0.5);
         font-family: 'Montserrat', sans-serif;
-        text-transform: uppercase;
         font-size: x-large;
         color: white">
-        <thead class="thead-dark">
+        <thead class="thead-dark" style="text-transform: uppercase">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>

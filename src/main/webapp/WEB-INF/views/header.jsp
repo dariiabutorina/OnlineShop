@@ -27,9 +27,24 @@
 
         .header {
             padding: 4%;
-            background: url("https://i.imgur.com/DrKx9jm.png?1") no-repeat center #efefef;
+            background: linear-gradient(-45deg, #6400ac, #ff739f, #d9ecf2, #2d6481);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             font-family: 'Chivo', sans-serif;
             font-weight: 300;
+        }
+
+
+        @keyframes gradient {
+            0% {
+                background-position: 0 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0 50%;
+            }
         }
 
         h1 {
@@ -61,7 +76,8 @@
 <div class="navbar navbar-expand-lg navbar-light bg-light"
      style="font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
-        font-size: x-large">
+        font-size: x-large;
+        ">
     <ul class="navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>

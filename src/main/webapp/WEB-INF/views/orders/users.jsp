@@ -13,7 +13,7 @@
 <body>
 <%@include file="../header.jsp" %>
 <br>
-<div class="container" align="center" style="text-align: center">
+<div class="container" align="center" style="text-align: center;">
     <h2> User's Orders </h2>
     <br>
     <table class="table table-hover" style="width: 1200px;
