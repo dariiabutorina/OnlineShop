@@ -22,17 +22,17 @@
           font-size: x-large">
         <label for="userName"> Name: </label>
         <div class="form-group">
-            <input type="text" class="form-control" id="userName"
+            <input type="text" class="form-control form-control-lg" id="userName"
                    name="name" required placeholder="Your name" width="450 px">
         </div>
         <label for="userPassword"> Password: </label>
         <div class="form-group">
-            <input type="password" class="form-control" id="userPassword"
+            <input type="password" class="form-control form-control-lg" id="userPassword"
                    name="password" required placeholder="Your password" width="450 px">
         </div>
         <label for="repeatPassword"> Repeat the password: </label>
         <div class="form-group">
-            <input type="password" class="form-control" id="repeatPassword"
+            <input type="password" class="form-control form-control-lg" id="repeatPassword"
                    name="password-repeat" required placeholder="Your password" width="450 px">
         </div>
         <br>

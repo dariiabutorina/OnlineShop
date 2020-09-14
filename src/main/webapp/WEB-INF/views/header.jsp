@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon"
+          href="https://i.imgur.com/NdUcHuw.png?1"
+          type="image/x-icon">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -26,14 +29,13 @@
         }
 
         .header {
-            padding: 4%;
-            background: linear-gradient(-45deg, #6400ac, #ff739f, #d9ecf2, #2d6481);
+            padding: 5%;
+            background: linear-gradient(-45deg, #d3f0ff, #3999cb, #c06bff, #ff739f, #ffcd00);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             font-family: 'Chivo', sans-serif;
             font-weight: 300;
         }
-
 
         @keyframes gradient {
             0% {
@@ -69,15 +71,15 @@
     </style>
 </head>
 <body>
-<div class="header" style="text-align: center; font-size: 20px">
-    <h1>Top Store</h1>
-    <h4><em>High-quality cosmetics must-haves</em></h4>
+<div class="header"
+     style="text-align: center">
+    <h1 style="font-size: 500%">Top Store</h1>
+    <h4 style="font-size: 200%"><em>High-quality cosmetics must-haves</em></h4>
 </div>
-<div class="navbar navbar-expand-lg navbar-light bg-light"
+<div class="navbar navbar-expand-lg navbar-dark bg-dark"
      style="font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
-        font-size: x-large;
-        ">
+        font-size: x-large">
     <ul class="navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
@@ -104,7 +106,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/registration">Sign Up</a>
         </li>
         <li class="nav-item active" style="position: absolute; right: 250px;">
-            <a class="nav-link" href="${pageContext.request.contextPath}/authorization">Sign In</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/authentication">Sign In</a>
         </li>
         <li class="nav-item active" style="position: absolute; right: 10px">
             <a class="nav-link" href="${pageContext.request.contextPath}/user/details?id=1">Account Details</a>

@@ -1,10 +1,12 @@
 package com.internet.shop.model;
 
 public class User {
+    public static final User NULL_USER = new User(null, null, null);
     private final String login;
     private String password;
     private String name;
     private Long id;
+    private boolean isLoggedIn;
 
     public User(String name,
                 String login, String password) {
@@ -39,6 +41,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setStatusLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 
     @Override

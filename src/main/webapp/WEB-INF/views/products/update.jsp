@@ -21,12 +21,12 @@
           font-size: x-large">
         <label for="productName"> Name: </label>
         <div class="form-group">
-            <input type="text" class="form-control" id="productName"
+            <input type="text" class="form-control form-control-lg" id="productName"
                    name="name" required placeholder="New product's name" width="450 px">
         </div>
         <label for="productPrice"> Price: </label>
         <div class="form-group">
-            <input type="number" class="form-control" id="productPrice"
+            <input type="number" class="form-control form-control-lg" id="productPrice"
                    name="price" required placeholder="New product's price" width="450 px">
         </div>
         <br>
