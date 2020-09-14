@@ -2,7 +2,6 @@ package com.internet.shop.controller.user;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.service.interfaces.UserService;
-
 import java.io.IOException;
 import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
