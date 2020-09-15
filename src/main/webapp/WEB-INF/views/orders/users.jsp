@@ -51,6 +51,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <br>
     <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
 </div>
 </body>

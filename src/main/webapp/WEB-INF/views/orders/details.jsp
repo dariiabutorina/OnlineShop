@@ -48,7 +48,8 @@
         </tbody>
     </table>
     <br>
-    <h5 style="text-align: center"> Total: ${sum}</h5>
+    <h4 style="text-align: center"> Total: ${sum}</h4>
+    <br>
     <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
 </div>
 </body>
