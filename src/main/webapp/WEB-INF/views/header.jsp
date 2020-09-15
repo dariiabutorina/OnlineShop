@@ -29,7 +29,7 @@
         }
 
         .header {
-            padding: 5%;
+            padding: 100px;
             background: linear-gradient(-45deg, #d3f0ff, #3999cb, #c06bff, #ff739f, #ffcd00);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
@@ -66,7 +66,9 @@
         }
 
         .navbar {
-            padding: 2%;
+            padding: 30px;
+            text-align: center;
+            align-items: center;
         }
     </style>
 </head>

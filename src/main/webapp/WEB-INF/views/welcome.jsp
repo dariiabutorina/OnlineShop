@@ -22,7 +22,7 @@
 <a class="btn btn-dark" style="position: absolute; right: 30px; top: 30px; padding: 1%; font-size: x-large"
    href="https://time.is">${time}</a>
 <br>
-<div style="padding-left: 30px; padding-right: 30px; padding-bottom: 30px;text-align: center">
+<div style="padding-left: 300px; padding-right: 300px; padding-bottom: 30px;text-align: center">
     <div class="card-deck">
         <div class="card">
             <img src="https://i.imgur.com/3xzTYP2.jpg?1" class="card-img-top" alt="dior">

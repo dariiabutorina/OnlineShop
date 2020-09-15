@@ -28,7 +28,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/authentication")
+        if (url.equals("/login")
                 || url.equals("/registration")
                 || url.equals("/")) {
             filterChain.doFilter(req, resp);
@@ -36,7 +36,7 @@ public class AuthenticationFilter implements Filter {
         }
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         if (userId == null) {
-            resp.sendRedirect(req.getContextPath() + "/authentication");
+            resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
         filterChain.doFilter(req, resp);
