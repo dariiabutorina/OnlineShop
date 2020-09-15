@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AuthenticationController extends HttpServlet {
+public class LoginController extends HttpServlet {
+    public static final String USER_ID = "user_id";
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final AuthenticationService authenticationService =
             (AuthenticationService) injector.getInstance(AuthenticationService.class);
@@ -19,7 +20,7 @@ public class AuthenticationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/authentication.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -30,10 +31,10 @@ public class AuthenticationController extends HttpServlet {
         try {
             User user = authenticationService.login(login, password);
             HttpSession session = req.getSession();
-            session.setAttribute("user_id", user.getId());
+            session.setAttribute(USER_ID, user.getId());
         } catch (AuthenticationException exception) {
             req.setAttribute("message", exception.getMessage());
-            req.getRequestDispatcher("/WEB-INF/views/authentication.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
         }
         resp.sendRedirect(req.getContextPath() + "/");
     }

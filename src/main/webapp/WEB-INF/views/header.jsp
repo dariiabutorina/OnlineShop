@@ -106,7 +106,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/registration">Sign Up</a>
         </li>
         <li class="nav-item active" style="position: absolute; right: 250px;">
-            <a class="nav-link" href="${pageContext.request.contextPath}/authentication">Sign In</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/login">Sign In</a>
         </li>
         <li class="nav-item active" style="position: absolute; right: 10px">
             <a class="nav-link" href="${pageContext.request.contextPath}/user/details?id=1">Account Details</a>

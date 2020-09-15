@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Top Store | Authorization</title>
+    <title>Top Store | Log In</title>
 </head>
 <style>
     .btn-light {
@@ -18,7 +18,7 @@
 <br>
 <h3 style="color: #dc143c"> ${message} </h3>
 <br>
-<form method="post" action="${pageContext.request.contextPath}/authentication"
+<form method="post" action="${pageContext.request.contextPath}/login"
       style="font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
         font-size: x-large">

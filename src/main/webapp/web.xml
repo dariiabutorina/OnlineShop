@@ -20,12 +20,12 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>authentication</servlet-name>
-        <servlet-class>com.internet.shop.controller.AuthenticationController</servlet-class>
+        <servlet-name>login</servlet-name>
+        <servlet-class>com.internet.shop.controller.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>authentication</servlet-name>
-        <url-pattern>/authentication</url-pattern>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>userDetails</servlet-name>
