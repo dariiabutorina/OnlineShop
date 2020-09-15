@@ -15,31 +15,31 @@
 <div class="container" align="center" style="text-align: center">
     <h2>Hello!</h2>
     <br>
-    <h4>Please, provide the required information below.</h4>
+    <h3>Please, provide the required information below.</h3>
     <br>
-    <h6 style="color: #dc143c"> ${message} </h6>
+    <h3 style="color: #dc143c"> ${message} </h3>
     <form method="post" action="${pageContext.request.contextPath}/registration"
     style="font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
         font-size: x-large">
         <label for="userName"> Name: </label>
         <div class="form-group">
-            <input type="text" class="form-control" id="userName"
+            <input type="text" class="form-control form-control-lg" id="userName"
                    name="name" required placeholder="Your name" width="450 px">
         </div>
         <label for="userLogin"> Login: </label>
         <div class="form-group">
-            <input type="text" class="form-control" id="userLogin"
+            <input type="text" class="form-control form-control-lg" id="userLogin"
                    name="login" required placeholder="Your login" width="450 px">
         </div>
         <label for="userPassword"> Password: </label>
         <div class="form-group">
-            <input type="password" class="form-control" id="userPassword"
+            <input type="password" class="form-control form-control-lg" id="userPassword"
                    name="password" required placeholder="Your password" width="450 px">
         </div>
         <label for="repeatPassword"> Repeat the password: </label>
         <div class="form-group">
-            <input type="password" class="form-control" id="repeatPassword"
+            <input type="password" class="form-control form-control-lg" id="repeatPassword"
                    name="password-repeat" required placeholder="Your password" width="450 px">
         </div>
         <br>

@@ -62,7 +62,7 @@ public class WelcomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String timeValue = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString().concat("   ");
+        String timeValue = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
         req.setAttribute("time", timeValue);
         req.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(req, resp);
     }
