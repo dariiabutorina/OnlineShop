@@ -42,7 +42,7 @@
                         <c:out value="${product.name}"/>
                     </td>
                     <td style="text-align: center">
-                        <c:out value="${product.price}"/>
+                        <c:out value="${product.price}0 UAH"/>
                     </td>
                     <td style="text-align: center">
                         <a href="${pageContext.request.contextPath}/product/update?id=${product.id}"

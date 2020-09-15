@@ -41,14 +41,14 @@
                     <c:out value="${product.name}"/>
                 </td>
                 <td style="text-align: center">
-                    <c:out value="${product.price}"/>
+                    <c:out value="${product.price}0 UAH"/>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <br>
-    <h4 style="text-align: center"> Total: ${sum}</h4>
+    <h4 style="text-align: center"> Total: ${sum}0 UAH</h4>
     <br>
     <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
 </div>
