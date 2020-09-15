@@ -34,6 +34,5 @@
         <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
     </form>
 </div>
-<br>
 </body>
 </html>

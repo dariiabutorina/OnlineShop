@@ -26,11 +26,12 @@
             position: absolute;
             font-family: 'Lora', serif;
             font-weight: 500;
+            min-width:2280px;
         }
 
         .header {
-            padding: 100px;
-            background: linear-gradient(-45deg, #d3f0ff, #3999cb, #c06bff, #ff739f, #ffcd00);
+            padding: 70px;
+            background: linear-gradient(-45deg, #c4ffdc, #2fb9fa, #c06bff, #ff739f, #fffd80);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
             font-family: 'Chivo', sans-serif;
@@ -67,8 +68,6 @@
 
         .navbar {
             padding: 30px;
-            text-align: center;
-            align-items: center;
         }
     </style>
 </head>
@@ -81,39 +80,42 @@
 <div class="navbar navbar-expand-lg navbar-dark bg-dark"
      style="font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
-        font-size: x-large">
-    <ul class="navbar-nav">
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/products/all/admin">Products (Admin)</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/users/all">Users (Admin)</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/orders/all">Orders (Admin)</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My Orders</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="${pageContext.request.contextPath}/shopping-cart">Shopping cart</a>
-        </li>
-        <li class="nav-item active" style="position: absolute; right: 350px">
-            <a class="nav-link" href="${pageContext.request.contextPath}/registration">Sign Up</a>
-        </li>
-        <li class="nav-item active" style="position: absolute; right: 250px;">
-            <a class="nav-link" href="${pageContext.request.contextPath}/login">Sign In</a>
-        </li>
-        <li class="nav-item active" style="position: absolute; right: 10px">
-            <a class="nav-link" href="${pageContext.request.contextPath}/user/details?id=1">Account Details</a>
-        </li>
-    </ul>
+        font-size: x-large;
+        text-align: center">
+    <div class="container" align="left" style="padding-bottom: 50px">
+        <ul class="navbar-nav">
+            <li class="nav-item active" style="width: 100px; position: absolute; left: 30px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
+            </li>
+            <li class="nav-item active" style="width: 150px; position: absolute; left: 170px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>
+            </li>
+            <li class="nav-item active" style="width: 260px; position: absolute; left: 380px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/products/all/admin">Products (Admin)</a>
+            </li>
+            <li class="nav-item active" style="width: 210px; position: absolute; left: 680px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/users/all">Users (Admin)</a>
+            </li>
+            <li class="nav-item active" style="width: 230px; position: absolute; left: 930px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/orders/all">Orders (Admin)</a>
+            </li>
+            <li class="nav-item active" style="width: 180px; position: absolute; left: 1200px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/orders">My Orders</a>
+            </li>
+            <li class="nav-item active" style="width: 240px; position: absolute; left: 1410px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/shopping-cart">Shopping cart</a>
+            </li>
+            <li class="nav-item active" style="width: 130px; position: absolute; right: 475px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/registration">Sign Up</a>
+            </li>
+            <li class="nav-item active" style="width: 130px; position: absolute; right: 305px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/login">Sign In</a>
+            </li>
+            <li class="nav-item active" style="width: 250px; position: absolute; right: 30px">
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/details?id=1">Account Details</a>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>
