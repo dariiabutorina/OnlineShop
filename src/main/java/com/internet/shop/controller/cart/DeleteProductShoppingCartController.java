@@ -1,5 +1,7 @@
 package com.internet.shop.controller.cart;
 
+import static com.internet.shop.controller.LoginController.USER_ID;
+
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
@@ -9,7 +11,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static com.internet.shop.controller.LoginController.USER_ID;
 
 public class DeleteProductShoppingCartController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");

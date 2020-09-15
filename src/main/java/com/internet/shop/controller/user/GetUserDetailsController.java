@@ -1,16 +1,14 @@
 package com.internet.shop.controller.user;
 
+import static com.internet.shop.controller.LoginController.USER_ID;
+
 import com.internet.shop.library.Injector;
 import com.internet.shop.service.interfaces.UserService;
-
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import static com.internet.shop.controller.LoginController.USER_ID;
 
 public class GetUserDetailsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
