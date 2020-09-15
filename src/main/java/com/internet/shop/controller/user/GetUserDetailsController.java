@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetUserDetailsController extends HttpServlet {
+    private static final String USER_ID = "user_id";
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -17,9 +18,9 @@ public class GetUserDetailsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        long id = Long.parseLong(req.getParameter("id"));
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
         try {
-            req.setAttribute("user", userService.get(id));
+            req.setAttribute("user", userService.get(userId));
         } catch (NoSuchElementException exception) {
             req.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(req, resp);
         }

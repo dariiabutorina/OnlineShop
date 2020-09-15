@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class BuyProductController extends HttpServlet {
+    private static final String USER_ID = "user_id";
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    private static final Long USER_ID = 1L;
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
     private final ShoppingCartService shoppingCartService =
@@ -19,9 +19,10 @@ public class BuyProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        Long id = Long.parseLong(req.getParameter("id"));
-        shoppingCartService.getByUserId(USER_ID)
-                .addProduct(productService.get(id));
+        Long productId = Long.parseLong(req.getParameter("id"));
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        shoppingCartService.getByUserId(userId)
+                .addProduct(productService.get(productId));
         resp.sendRedirect(req.getContextPath() + "/products/all");
     }
 }
