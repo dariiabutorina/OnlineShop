@@ -12,7 +12,7 @@ text-transform: uppercase;">
 <br>
 <h2>Oops!</h2>
 <br>
-<h2>Something went wrong.</h2>
+<h2>Access to this page was denied.</h2>
 <br>
 <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
 </body>

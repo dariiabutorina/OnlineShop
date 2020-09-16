@@ -45,11 +45,11 @@
                 <c:out value="${product.price}"/>
             </td>
             <td style="text-align: center">
-                <a href="${pageContext.request.contextPath}/orders/details?id=${order.id}"
+                <a href="${pageContext.request.contextPath}/order/details?id=${order.id}"
                    class="btn btn-light"> Details </a>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/orders/delete?id=${order.id}"
+                <a href="${pageContext.request.contextPath}/order/delete?id=${order.id}"
                    class="btn btn-light"> Delete </a>
             </td>
         </tr>

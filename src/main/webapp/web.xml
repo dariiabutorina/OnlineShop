@@ -28,12 +28,28 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.internet.shop.controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>userDetails</servlet-name>
         <servlet-class>com.internet.shop.controller.user.GetUserDetailsController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userDetails</servlet-name>
         <url-pattern>/user/details</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>userDetailsAdmin</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.GetUserDetailsAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userDetailsAdmin</servlet-name>
+        <url-pattern>/user/details/admin</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>allUsers</servlet-name>
@@ -58,6 +74,14 @@
     <servlet-mapping>
         <servlet-name>updateUser</servlet-name>
         <url-pattern>/user/update</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>addRoleUser</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.AddRoleUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addRoleUser</servlet-name>
+        <url-pattern>/user/role</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>allProducts</servlet-name>
@@ -145,7 +169,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>completeOrder</servlet-name>
-        <url-pattern>/orders/complete</url-pattern>
+        <url-pattern>/order/complete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>deleteOrder</servlet-name>
@@ -153,7 +177,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteOrder</servlet-name>
-        <url-pattern>/orders/delete</url-pattern>
+        <url-pattern>/order/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>orderDetails</servlet-name>
@@ -161,7 +185,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>orderDetails</servlet-name>
-        <url-pattern>/orders/details</url-pattern>
+        <url-pattern>/order/details</url-pattern>
     </servlet-mapping>
     <filter>
         <filter-name>authenticationFilter</filter-name>
@@ -169,6 +193,14 @@
     </filter>
     <filter-mapping>
         <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>authorizationFilter</filter-name>
+        <filter-class>com.internet.shop.web.filter.AuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <error-page>

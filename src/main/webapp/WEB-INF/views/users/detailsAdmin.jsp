@@ -9,6 +9,12 @@
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
     }
+
+    .form-control {
+        width: 1000%;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+    }
 </style>
 <body>
 <%@include file="../header.jsp" %>
@@ -45,6 +51,23 @@
             <td>
                 <a href="${pageContext.request.contextPath}/user/update?id=${user.id}"
                    class="btn btn-light">Edit</a>
+            </td>
+            <td>
+                <form method="get" action="${pageContext.request.contextPath}/user/role">
+                    <div class="form-row align-items-center">
+                        <input type="hidden" name="id" value="${user.id}">
+                        <div class="col-auto my-1">
+                            <select id="roles" name="test" class="form-control">
+                                <option selected>Select Role...</option>
+                                <option value="USER">User</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
+                        </div>
+                        <div class="col-auto my-1">
+                            <button type="submit" class="btn btn-light">Add Role</button>
+                        </div>
+                    </div>
+                </form>
             </td>
         </tr>
         </tbody>

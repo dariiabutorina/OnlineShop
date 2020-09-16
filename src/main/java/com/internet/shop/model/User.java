@@ -1,16 +1,20 @@
 package com.internet.shop.model;
 
+import java.util.Set;
+
 public class User {
     private final String login;
     private String password;
     private String name;
     private Long id;
+    private Set<Role> roles;
 
-    public User(String name,
-                String login, String password) {
+    public User(String name, String login,
+                String password, Set<Role> roles) {
         this.name = name;
         this.login = login;
         this.password = password;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -39,6 +43,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

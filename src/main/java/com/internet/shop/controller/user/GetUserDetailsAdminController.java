@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GetUserDetailsController extends HttpServlet {
+public class GetUserDetailsAdminController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -25,6 +25,6 @@ public class GetUserDetailsController extends HttpServlet {
             userId = (Long) req.getSession().getAttribute(USER_ID);
         }
         req.setAttribute("user", userService.get(userId));
-        req.getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/users/detailsAdmin.jsp").forward(req, resp);
     }
 }
