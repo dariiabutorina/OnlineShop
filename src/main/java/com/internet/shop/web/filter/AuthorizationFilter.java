@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthorizationFilter implements Filter {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    public static final Set<Role.RoleName> USER = Set.of(Role.RoleName.USER);
-    public static final Set<Role.RoleName> ADMIN = Set.of(Role.RoleName.ADMIN);
+    public static final Set<Role.RoleName> USER_ROLE = Set.of(Role.RoleName.USER);
+    public static final Set<Role.RoleName> ADMIN_ROLE = Set.of(Role.RoleName.ADMIN);
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
     private Map<String, Set<Role.RoleName>> protectedUrls;
@@ -33,22 +33,22 @@ public class AuthorizationFilter implements Filter {
         /*
         Users only
         */
-        protectedUrls.put("/product/buy", USER);
-        protectedUrls.put("/shopping-cart", USER);
-        protectedUrls.put("/shopping-cart/delete", USER);
-        protectedUrls.put("/order/complete", USER);
+        protectedUrls.put("/product/buy", USER_ROLE);
+        protectedUrls.put("/shopping-cart", USER_ROLE);
+        protectedUrls.put("/shopping-cart/delete", USER_ROLE);
+        protectedUrls.put("/order/complete", USER_ROLE);
         /*
         Admins only
         */
-        protectedUrls.put("/users/all", ADMIN);
-        protectedUrls.put("/user/delete", ADMIN);
-        protectedUrls.put("/products/all/admin", ADMIN);
-        protectedUrls.put("/product/delete", ADMIN);
-        protectedUrls.put("/product/add", ADMIN);
-        protectedUrls.put("/orders/all", ADMIN);
-        protectedUrls.put("/order/delete", ADMIN);
-        protectedUrls.put("/user/details/admin", ADMIN);
-        protectedUrls.put("/user/role", ADMIN);
+        protectedUrls.put("/users/all", ADMIN_ROLE);
+        protectedUrls.put("/user/delete", ADMIN_ROLE);
+        protectedUrls.put("/products/all/admin", ADMIN_ROLE);
+        protectedUrls.put("/product/delete", ADMIN_ROLE);
+        protectedUrls.put("/product/add", ADMIN_ROLE);
+        protectedUrls.put("/orders/all", ADMIN_ROLE);
+        protectedUrls.put("/order/delete", ADMIN_ROLE);
+        protectedUrls.put("/user/details/admin", ADMIN_ROLE);
+        protectedUrls.put("/user/role", ADMIN_ROLE);
     }
 
     @Override
