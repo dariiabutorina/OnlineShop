@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AuthorizationFilter implements Filter {
+    private static final Set<Role.RoleName> USER_ROLE = Set.of(Role.RoleName.USER);
+    private static final Set<Role.RoleName> ADMIN_ROLE = Set.of(Role.RoleName.ADMIN);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    public static final Set<Role.RoleName> USER_ROLE = Set.of(Role.RoleName.USER);
-    public static final Set<Role.RoleName> ADMIN_ROLE = Set.of(Role.RoleName.ADMIN);
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
     private Map<String, Set<Role.RoleName>> protectedUrls;
