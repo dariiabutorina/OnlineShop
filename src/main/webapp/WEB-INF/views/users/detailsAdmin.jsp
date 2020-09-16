@@ -11,7 +11,6 @@
     }
 
     .form-control {
-        width: 1000%;
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
     }
