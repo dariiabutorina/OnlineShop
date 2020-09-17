@@ -7,6 +7,7 @@
     .btn-dark {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 
     .card-title {

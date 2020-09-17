@@ -23,7 +23,7 @@ public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
     }
 
     @Override
@@ -38,17 +38,17 @@ public class RegistrationController extends HttpServlet {
                 || login.length() == 0
                 || password.length() == 0) {
             req.setAttribute("message", "All the fields must be filled in.");
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
         }
 
         if (password.equals(passwordRepeat)) {
             User newUser = new User(name, login, password, Set.of(Role.of("USER")));
             userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(newUser.getId()));
-            resp.sendRedirect(req.getContextPath() + "/welcome");
+            resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             req.setAttribute("message", "Passwords must be equal.");
-            req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
         }
     }
 }

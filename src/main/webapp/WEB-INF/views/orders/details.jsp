@@ -5,9 +5,10 @@
     <title>Top Store | Order</title>
 </head>
 <style>
-    .btn-light {
+    .btn-dark {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 </style>
 <body>
@@ -34,13 +35,13 @@
         <tbody>
         <c:forEach var="product" items="${products}">
             <tr>
-                <th scope="row">
+                <th scope="row" style="padding-top: 20px">
                     <c:out value="${product.id}"/>
                 </th>
-                <td style="text-align: center">
+                <td style="text-align: center; padding-top: 20px">
                     <c:out value="${product.name}"/>
                 </td>
-                <td style="text-align: center">
+                <td style="text-align: center; padding-top: 20px">
                     <c:out value="${product.price}0 UAH"/>
                 </td>
             </tr>
@@ -50,7 +51,7 @@
     <br>
     <h4 style="text-align: center"> Total: ${sum}0 UAH</h4>
     <br>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+    <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
 </div>
 </body>
 </html>

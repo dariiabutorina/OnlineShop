@@ -8,6 +8,13 @@
     .btn-light {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
+    }
+
+    .btn-dark {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        width: 200px;
     }
 </style>
 <body>
@@ -30,24 +37,23 @@
             <th scope="col">Role</th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="user" items="${users}">
             <tr>
-                <th scope="row">
+                <th scope="row" style="padding-top: 20px">
                     <c:out value="${user.id}"/>
                 </th>
-                <td style="text-align: center">
+                <td style="text-align: center; text-transform: uppercase; padding-top: 20px">
                     <c:out value="${user.name}"/>
                 </td>
-                <td style="text-align: center">
+                <td style="text-align: center; padding-top: 20px">
                     <c:out value="${user.login}"/>
                 </td>
-                <td style="text-align: center">
+                <td style="text-align: center; padding-top: 20px">
                     <c:forEach var="role" items="${user.roles}">
-                            <c:out value="${role} "/>
+                        <c:out value="${role} "/>
                     </c:forEach>
                 </td>
                 <td style="text-align: center">
@@ -62,7 +68,8 @@
         </c:forEach>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+    <br>
+    <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
 </div>
 </body>
 </html>

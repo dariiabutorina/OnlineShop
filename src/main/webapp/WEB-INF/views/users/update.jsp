@@ -4,9 +4,10 @@
     <title>Top Store | Edit Account</title>
 </head>
 <style>
-    .btn-light {
+    .btn-dark {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 </style>
 <body>
@@ -36,8 +37,8 @@
                    name="password-repeat" required placeholder="Your password" width="450 px">
         </div>
         <br>
-        <button type="submit" class="btn btn-light"> Save Changes</button>
-        <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+        <button type="submit" class="btn btn-dark"> Save Changes</button>
+        <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
     </form>
 </div>
 </body>
