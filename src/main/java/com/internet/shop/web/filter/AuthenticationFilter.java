@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
-    private static final Set<String> allowedUrls = Set.of("/login", "/registration", "/");
+    private Set<String> allowedUrls;
 
     @Override
     public void init(FilterConfig filterConfig) {
+        allowedUrls = Set.of("/login", "/registration", "/", "/inject");
     }
 
     @Override

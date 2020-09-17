@@ -37,6 +37,7 @@ public class AuthorizationFilter implements Filter {
         protectedUrls.put("/shopping-cart", USER_ROLE);
         protectedUrls.put("/shopping-cart/delete", USER_ROLE);
         protectedUrls.put("/order/complete", USER_ROLE);
+        protectedUrls.put("/user/orders", USER_ROLE);
         /*
         Admins only
         */
@@ -71,7 +72,7 @@ public class AuthorizationFilter implements Filter {
     public void destroy() {
     }
 
-    private static boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {
+    private boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {
         return user.getRoles().stream()
                 .map(Role::getRoleName)
                 .anyMatch(authorizedRoles::contains);

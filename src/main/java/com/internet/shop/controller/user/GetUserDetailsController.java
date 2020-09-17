@@ -18,12 +18,7 @@ public class GetUserDetailsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId;
-        try {
-            userId = Long.parseLong(req.getParameter(USER_ID));
-        } catch (NumberFormatException exception) {
-            userId = (Long) req.getSession().getAttribute(USER_ID);
-        }
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
         req.setAttribute("user", userService.get(userId));
         req.getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(req, resp);
     }

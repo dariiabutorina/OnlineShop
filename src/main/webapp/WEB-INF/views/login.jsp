@@ -7,6 +7,7 @@
     .btn-light {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 </style>
 <body style="text-align: center; align-items: center">
@@ -34,9 +35,14 @@
                    name="password" required placeholder="Your password">
         </div>
         <br>
+        <div class="container" align="center">
         <button type="submit" class="btn btn-light"> Sign in</button>
-        <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
         <a href="${pageContext.request.contextPath}/registration" class="btn btn-light"> Sign Up </a>
+        <br>
+        <br>
+        <a href="${pageContext.request.contextPath}/inject" class="btn btn-light"> Inject Data </a>
+        <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+        </div>
     </div>
 </form>
 </body>

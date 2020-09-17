@@ -20,7 +20,7 @@ public class AddRoleUserController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         Long userId = Long.parseLong(req.getParameter("id"));
-        Role role = Role.of(req.getParameter("test"));
+        Role role = Role.of(req.getParameter("roleAdd"));
         User user = userService.get(userId);
         Set<Role> roles = new HashSet<>(Set.copyOf(user.getRoles()));
         roles.add(role);

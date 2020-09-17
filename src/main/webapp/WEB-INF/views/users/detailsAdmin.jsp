@@ -56,7 +56,7 @@
                     <div class="form-row align-items-center">
                         <input type="hidden" name="id" value="${user.id}">
                         <div class="col-auto my-1">
-                            <select id="roles" name="test" class="form-control">
+                            <select id="roles" name="roleAdd" class="form-control">
                                 <option selected>Select Role...</option>
                                 <option value="USER">User</option>
                                 <option value="ADMIN">Admin</option>
