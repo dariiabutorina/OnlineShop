@@ -27,6 +27,8 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Login</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
@@ -44,7 +46,12 @@
                     <c:out value="${user.login}"/>
                 </td>
                 <td style="text-align: center">
-                    <a href="${pageContext.request.contextPath}/user/details?id=${user.id}"
+                    <c:forEach var="role" items="${user.roles}">
+                            <c:out value="${role} "/>
+                    </c:forEach>
+                </td>
+                <td style="text-align: center">
+                    <a href="${pageContext.request.contextPath}/user/details/admin?user_id=${user.id}"
                        class="btn btn-light">Details</a>
                 </td>
                 <td style="text-align: center">

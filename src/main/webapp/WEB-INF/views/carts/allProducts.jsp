@@ -52,7 +52,7 @@
         </tbody>
     </table>
     <br>
-    <a href="${pageContext.request.contextPath}/orders/complete?cartId=${cartId}"
+    <a href="${pageContext.request.contextPath}/order/complete?cartId=${cartId}"
        class="btn btn-light">Create order</a>
     <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
 </div>

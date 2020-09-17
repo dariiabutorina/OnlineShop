@@ -1,8 +1,7 @@
 package com.internet.shop.web.filter;
 
-import com.internet.shop.library.Injector;
-import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,12 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
-    private static final Injector injector = Injector.getInstance("com.internet.shop");
-    private final UserService userService =
-            (UserService) injector.getInstance(UserService.class);
+    private Set<String> allowedUrls;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
+        allowedUrls = Set.of("/login", "/registration", "/", "/inject");
     }
 
     @Override
@@ -28,9 +26,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/login")
-                || url.equals("/registration")
-                || url.equals("/")) {
+        if (allowedUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }
