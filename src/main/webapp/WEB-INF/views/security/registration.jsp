@@ -4,13 +4,14 @@
     <title>Top Store | Registration</title>
 </head>
 <style>
-    .btn-light {
+    .btn-dark {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 </style>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
 <br>
 <div class="container" align="center" style="text-align: center">
     <h2>Hello!</h2>
@@ -19,7 +20,7 @@
     <br>
     <h3 style="color: #dc143c"> ${message} </h3>
     <form method="post" action="${pageContext.request.contextPath}/registration"
-    style="font-family: 'Montserrat', sans-serif;
+          style="font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
         font-size: x-large">
         <label for="userName"> Name: </label>
@@ -43,8 +44,8 @@
                    name="password-repeat" required placeholder="Your password" width="450 px">
         </div>
         <br>
-        <button type="submit" class="btn btn-light"> Sing up</button>
-        <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+        <button type="submit" class="btn btn-dark"> Sing up</button>
+        <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
     </form>
 </div>
 </body>

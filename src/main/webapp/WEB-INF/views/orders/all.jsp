@@ -1,5 +1,5 @@
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType = "text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Top Store | Orders (Admin)</title>
@@ -8,14 +8,20 @@
     .btn-light {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
-</style>
+
+    .btn-dark {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        width: 200px;
+    }</style>
 <body>
-<%@include file="../header.jsp"%>
+<%@include file="../header.jsp" %>
 <br>
 <div class="container" align="center" style="text-align: center">
-<h2> All Orders </h2>
-<br>
+    <h2> All Orders </h2>
+    <br>
     <table class="table table-hover" style="width: 1200px;
         text-align: center;
         background: rgba(0, 0, 0, 0.5);
@@ -23,41 +29,41 @@
         text-transform: uppercase;
         font-size: x-large;
         color: white">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Order ID</th>
-        <th scope="col">User ID</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="order" items="${orders}">
+        <thead class="thead-dark">
         <tr>
-            <th scope="row">
-                <c:out value="${order.id}"/>
-            </th>
-            <td style="text-align: center">
-                <c:out value="${order.userId}"/>
-            </td>
-            <td style="text-align: center">
-                <c:out value="${product.price}"/>
-            </td>
-            <td style="text-align: center">
-                <a href="${pageContext.request.contextPath}/order/details?id=${order.id}"
-                   class="btn btn-light"> Details </a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/order/delete?id=${order.id}"
-                   class="btn btn-light"> Delete </a>
-            </td>
+            <th scope="col">Order ID</th>
+            <th scope="col">User ID</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="order" items="${orders}">
+            <tr>
+                <th scope="row" style="padding-top: 20px">
+                    <c:out value="${order.id}"/>
+                </th>
+                <td style="text-align: center; padding-top: 20px">
+                    <c:out value="${order.userId}"/>
+                </td>
+                <td style="text-align: center; padding-top: 20px">
+                    <c:out value="${product.price}"/>
+                </td>
+                <td style="text-align: center">
+                    <a href="${pageContext.request.contextPath}/order/details?id=${order.id}"
+                       class="btn btn-light"> Details </a>
+                </td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/order/delete?id=${order.id}"
+                       class="btn btn-light"> Delete </a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
     <br>
-<a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+    <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
 </div>
 </body>
 </html>

@@ -8,11 +8,35 @@
     .btn-light {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 
-    .form-control {
+    .btn-dark {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
+    }
+
+    .mr-sm-2 {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-size: x-small;
+        width: 200px;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        vertical-align: center;
+    }
+
+    td {
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        vertical-align: center;
+    }
+
+    option {
+        background: #fdfdfd;
     }
 </style>
 <body>
@@ -34,46 +58,49 @@
             <th scope="col">Login</th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <th scope="row">
+            <th scope="row" style="padding-top: 30px">
                 <c:out value="${user.id}"/>
             </th>
-            <td style="text-align: center">
+            <td style="text-align: center; padding-top: 30px; text-transform: uppercase">
                 <c:out value="${user.name}"/>
             </td>
-            <td style="text-align: center">
+            <td style="text-align: center; padding-top: 30px">
                 <c:out value="${user.login}"/>
             </td>
-            <td>
+            <td style="padding-top: 23px">
                 <a href="${pageContext.request.contextPath}/user/update?id=${user.id}"
                    class="btn btn-light">Edit</a>
             </td>
-            <td>
-                <form method="get" action="${pageContext.request.contextPath}/user/role">
-                    <div class="form-row align-items-center">
+            <form method="get" action="${pageContext.request.contextPath}/user/role">
+                <div class="form-row align-items-center">
+                    <td>
                         <input type="hidden" name="id" value="${user.id}">
-                        <div class="col-auto my-1">
-                            <select id="roles" name="roleAdd" class="form-control">
-                                <option selected>Select Role...</option>
-                                <option value="USER">User</option>
-                                <option value="ADMIN">Admin</option>
+                        <div class="col-auto my-1" style="padding-bottom: 15px">
+                            <select id="roles" name="roleAdd" class="custom-select my-1 mr-sm-2" style="height: 46px">
+                                <option selected style="align-content: center">Click to select...</option>
+                                <option value="USER" style="text-align: center">User</option>
+                                <option value="ADMIN" style="text-align: center">Admin</option>
                             </select>
                         </div>
-                        <div class="col-auto my-1">
+                    </td>
+                    <td>
+                        <div class="col-auto my-1" style="padding-top: 7px">
                             <button type="submit" class="btn btn-light">Add Role</button>
                         </div>
-                    </div>
-                </form>
-            </td>
+                    </td>
+                </div>
+            </form>
         </tr>
         </tbody>
     </table>
     <br>
-    <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
-    <a href="${pageContext.request.contextPath}/logout" class="btn btn-light"> Sign Out </a>
+    <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
+    <a href="${pageContext.request.contextPath}/logout" class="btn btn-dark"> Sign Out </a>
 </div>
 </body>
 </html>

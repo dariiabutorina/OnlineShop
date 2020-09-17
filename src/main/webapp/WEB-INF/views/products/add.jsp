@@ -4,9 +4,10 @@
     <title>Top Store | Add Product </title>
 </head>
 <style>
-    .btn-light {
+    .btn-dark {
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
+        width: 200px;
     }
 </style>
 <body>
@@ -27,8 +28,8 @@
                    name="price" required placeholder="New product's price" width="450 px">
         </div>
         <br>
-        <button type="submit" class="btn btn-light"> Add Product</button>
-        <a href="${pageContext.request.contextPath}/" class="btn btn-light"> Go Back </a>
+        <button type="submit" class="btn btn-dark"> Add Product</button>
+        <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
     </form>
 </div>
 <br>
