@@ -9,8 +9,8 @@ public class ConnectionUtil {
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Can't find MySQL Driver", e);
+        } catch (ClassNotFoundException exception) {
+            throw new RuntimeException("Can't find MySQL Driver", exception);
         }
     }
 
@@ -23,8 +23,8 @@ public class ConnectionUtil {
 
         try {
             connection = DriverManager.getConnection(url, connectionProps);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException exception) {
+            throw new RuntimeException(exception);
         }
         return connection;
     }
