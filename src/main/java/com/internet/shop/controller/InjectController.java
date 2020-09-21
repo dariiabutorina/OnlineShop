@@ -1,15 +1,12 @@
 package com.internet.shop.controller;
 
 import com.internet.shop.library.Injector;
-import com.internet.shop.model.Product;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
-import com.internet.shop.service.interfaces.ProductService;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
