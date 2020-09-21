@@ -15,11 +15,10 @@ public class ConnectionUtil {
     }
 
     public static Connection getConnection() throws SQLException {
-        Connection connection;
         Properties connectionProps = new Properties();
         connectionProps.put("user","root");
-        connectionProps.put("password", "Password");
-        String url = "jdbc:mysql://localhost:3306/TopStore?serverTimezone=UTC";
+        connectionProps.put("password", "12345678");
+        String url = "jdbc:mysql://localhost:3306/top_store?serverTimezone=UTC";
         try {
             return DriverManager.getConnection(url, connectionProps);
         } catch (SQLException exception) {
