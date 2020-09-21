@@ -2,13 +2,11 @@ package com.internet.shop.controller.user;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Role;
-import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,11 +28,7 @@ public class AddRoleUserController extends HttpServlet {
         Set<Role> roles = new HashSet<>(Set.copyOf(user.getRoles()));
         roles.add(role);
         user.setRoles(roles);
-        try {
-            shoppingCartService.getByUserId(userId);
-        } catch (NoSuchElementException exception) {
-            shoppingCartService.create(new ShoppingCart(userId));
-        }
+        shoppingCartService.getByUserId(userId);
         userService.update(user);
         resp.sendRedirect(req.getContextPath() + "/users/all");
     }

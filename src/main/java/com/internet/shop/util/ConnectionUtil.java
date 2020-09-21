@@ -20,12 +20,10 @@ public class ConnectionUtil {
         connectionProps.put("user","root");
         connectionProps.put("password", "Password");
         String url = "jdbc:mysql://localhost:3306/TopStore?serverTimezone=UTC";
-
         try {
-            connection = DriverManager.getConnection(url, connectionProps);
+            return DriverManager.getConnection(url, connectionProps);
         } catch (SQLException exception) {
             throw new RuntimeException(exception);
         }
-        return connection;
     }
 }
