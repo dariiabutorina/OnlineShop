@@ -173,7 +173,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private boolean deleteProducts(Long orderId) {
         String query = "DELETE FROM order_product WHERE id_order = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, orderId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {

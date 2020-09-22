@@ -179,7 +179,7 @@ public class UserDaoJdbcImpl implements UserDao {
     private boolean deleteRoles(Long userId) {
         String query = "DELETE FROM user_role WHERE id_user = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {
