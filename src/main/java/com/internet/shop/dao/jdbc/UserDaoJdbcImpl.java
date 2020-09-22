@@ -106,20 +106,13 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataBaseConnectionExchangeFailedException("Failed to update the user "
                     + "with id: " + userId, exception);
         }
-        query = "DELETE FROM user_role WHERE id_user = ?";
-        try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, userId);
-            statement.executeUpdate();
-        } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to delete the user's roles "
-                    + "by user id: " + userId, exception);
-        }
+        deleteRoles(userId);
         return addRoles(user);
     }
 
     @Override
     public boolean deleteById(Long id) {
+        deleteRoles(id);
         String query = "UPDATE user SET deleted = true WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
@@ -180,6 +173,18 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get the roles "
                     + "of the user with id: " + userId, exception);
+        }
+    }
+
+    private boolean deleteRoles(Long userId) {
+        String query = "DELETE FROM user_role WHERE id_user = ?";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            return statement.executeUpdate() != 0;
+        } catch (SQLException exception) {
+            throw new DataBaseConnectionExchangeFailedException("Failed to delete the user's roles "
+                    + "by user id: " + userId, exception);
         }
     }
 }

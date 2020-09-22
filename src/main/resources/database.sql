@@ -29,7 +29,7 @@ CREATE TABLE `top_store`.`user`
     UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE
 );
 
-CREATE TABLE `top_store`.`order`
+CREATE TABLE `top_store`.`orders`
 (
     `id`      BIGINT(11) NOT NULL AUTO_INCREMENT,
     `user_id` BIGINT(11) NOT NULL,
