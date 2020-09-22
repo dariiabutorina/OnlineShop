@@ -19,16 +19,25 @@ import java.util.Optional;
 public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     @Override
     public Optional<ShoppingCart> getByUserId(Long userId) {
+        ShoppingCart shoppingCart = null;
         String query = "SELECT * FROM shopping_cart WHERE deleted = false AND user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(extractValue(resultSet));
+                shoppingCart = extractValue(resultSet);
             }
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
+        }
+        return fillShoppingCartWithProducts(shoppingCart);
+    }
+
+    private Optional<ShoppingCart> fillShoppingCartWithProducts(ShoppingCart shoppingCart) {
+        if (shoppingCart != null) {
+            shoppingCart.setProducts(getProducts(shoppingCart.getId()));
+            return Optional.of(shoppingCart);
         }
         return Optional.empty();
     }
@@ -54,19 +63,20 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     @Override
     public Optional<ShoppingCart> get(Long id) {
+        ShoppingCart shoppingCart = null;
         String query = "SELECT * FROM shopping_cart WHERE deleted = false AND id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(extractValue(resultSet));
+                shoppingCart = extractValue(resultSet);
             }
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get the shopping cart "
                     + "with id: " + id, exception);
         }
-        return Optional.empty();
+        return fillShoppingCartWithProducts(shoppingCart);
     }
 
     @Override
@@ -79,10 +89,17 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             while (resultSet.next()) {
                 shoppingCarts.add(extractValue(resultSet));
             }
-            return shoppingCarts;
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
         }
+        return fillListOfCartsWithProducts(shoppingCarts);
+    }
+
+    private List<ShoppingCart> fillListOfCartsWithProducts(List<ShoppingCart> shoppingCarts) {
+        for (int index = 0; index < shoppingCarts.size(); index++) {
+            shoppingCarts.get(index).setProducts(getProducts(shoppingCarts.get(index).getId()));
+        }
+        return shoppingCarts;
     }
 
     @Override
@@ -144,8 +161,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     private ShoppingCart extractValue(ResultSet resultSet) throws SQLException {
         long id = resultSet.getLong("id");
         long userId = resultSet.getLong("user_id");
-        List<Product> products = getProducts(id);
-        return new ShoppingCart(id, userId, products);
+        return new ShoppingCart(id, userId);
     }
 
     private List<Product> getProducts(Long shoppingCartId) {
@@ -172,7 +188,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     private boolean deleteProducts(Long shoppingCartId) {
         String query = "DELETE FROM shopping_cart_product WHERE id_shopping_cart = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, shoppingCartId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {

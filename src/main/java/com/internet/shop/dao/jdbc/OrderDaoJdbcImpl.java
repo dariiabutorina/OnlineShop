@@ -28,10 +28,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             while (resultSet.next()) {
                 orders.add(extractValue(resultSet));
             }
-            return orders;
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
         }
+        return fillListOfOrdersWithProducts(orders);
     }
 
     @Override
@@ -55,19 +55,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> get(Long id) {
+        Order order = null;
         String query = "SELECT * FROM orders WHERE deleted = false AND id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(extractValue(resultSet));
+                order = extractValue(resultSet);
             }
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get the order "
                     + "with id: " + id, exception);
         }
-        return Optional.empty();
+        return fillOrderWithProducts(order);
     }
 
     @Override
@@ -80,10 +81,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             while (resultSet.next()) {
                 orders.add(extractValue(resultSet));
             }
-            return orders;
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
         }
+        return fillListOfOrdersWithProducts(orders);
     }
 
     @Override
@@ -142,6 +143,21 @@ public class OrderDaoJdbcImpl implements OrderDao {
         return order;
     }
 
+    private Optional<Order> fillOrderWithProducts(Order order) {
+        if (order != null) {
+            order.setProducts(getProducts(order.getId()));
+            return Optional.of(order);
+        }
+        return Optional.empty();
+    }
+
+    private List<Order> fillListOfOrdersWithProducts(List<Order> orders) {
+        for (int index = 0; index < orders.size(); index++) {
+            orders.get(index).setProducts(getProducts(orders.get(index).getId()));
+        }
+        return orders;
+    }
+
     private Order extractValue(ResultSet resultSet) throws SQLException {
         long id = resultSet.getLong("id");
         long userId = resultSet.getLong("user_id");
@@ -173,7 +189,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private boolean deleteProducts(Long orderId) {
         String query = "DELETE FROM order_product WHERE id_order = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, orderId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {

@@ -21,19 +21,20 @@ import java.util.Set;
 public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) {
+        User user = null;
         String query = "SELECT * FROM user WHERE deleted = false AND login = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(extractValue(resultSet));
+                user = extractValue(resultSet);
             }
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get the user "
                     + "with login: " + login, exception);
         }
-        return Optional.empty();
+        return addRolesToUser(user);
     }
 
     @Override
@@ -59,19 +60,20 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public Optional<User> get(Long id) {
+        User user = null;
         String query = "SELECT * FROM user WHERE deleted = false AND id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(extractValue(resultSet));
+                user = extractValue(resultSet);
             }
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get the user "
                     + "with id: " + id, exception);
         }
-        return Optional.empty();
+        return addRolesToUser(user);
     }
 
     @Override
@@ -84,10 +86,13 @@ public class UserDaoJdbcImpl implements UserDao {
             while (resultSet.next()) {
                 users.add(extractValue(resultSet));
             }
-            return users;
         } catch (SQLException exception) {
             throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
         }
+        for (int index = 0; index < users.size(); index++) {
+            users.get(index).setRoles(getRoles(users.get(index).getId()));
+        }
+        return users;
     }
 
     @Override
@@ -127,6 +132,14 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public boolean delete(User user) {
         return deleteById(user.getId());
+    }
+
+    private Optional<User> addRolesToUser(User user) {
+        if (user != null) {
+            user.setRoles(getRoles(user.getId()));
+            return Optional.of(user);
+        }
+        return Optional.empty();
     }
 
     private User addRoles(User user) {
@@ -179,7 +192,7 @@ public class UserDaoJdbcImpl implements UserDao {
     private boolean deleteRoles(Long userId) {
         String query = "DELETE FROM user_role WHERE id_user = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {
