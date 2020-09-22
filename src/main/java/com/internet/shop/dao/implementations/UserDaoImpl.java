@@ -2,13 +2,11 @@ package com.internet.shop.dao.implementations;
 
 import com.internet.shop.dao.interfaces.UserDao;
 import com.internet.shop.db.Storage;
-import com.internet.shop.library.Dao;
 import com.internet.shop.model.User;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@Dao
 public class UserDaoImpl implements UserDao {
     @Override
     public User create(User user) {

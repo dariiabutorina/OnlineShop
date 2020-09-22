@@ -74,7 +74,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product update(Product product) {
         String query = "UPDATE product SET name = ?, price = ? WHERE id = ? "
-                + "AND Deleted = false";
+                + "AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
@@ -107,9 +107,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
     }
 
     private Product extractValue(ResultSet resultSet) throws SQLException {
-        long id = resultSet.getLong("ID");
-        String name = resultSet.getString("Name");
-        BigDecimal price = resultSet.getBigDecimal("Price");
+        long id = resultSet.getLong("id");
+        String name = resultSet.getString("name");
+        BigDecimal price = resultSet.getBigDecimal("price");
         Product product = new Product(name, price);
         product.setId(id);
         return product;
