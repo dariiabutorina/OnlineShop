@@ -3,6 +3,7 @@ package com.internet.shop.controller.user;
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
+import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
 import java.util.HashSet;
@@ -15,6 +16,8 @@ public class AddRoleUserController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
+    private final ShoppingCartService shoppingCartService =
+            (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -25,6 +28,7 @@ public class AddRoleUserController extends HttpServlet {
         Set<Role> roles = new HashSet<>(Set.copyOf(user.getRoles()));
         roles.add(role);
         user.setRoles(roles);
+        shoppingCartService.getByUserId(userId);
         userService.update(user);
         resp.sendRedirect(req.getContextPath() + "/users/all");
     }

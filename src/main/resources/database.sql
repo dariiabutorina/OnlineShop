@@ -1,0 +1,8 @@
+CREATE SCHEMA `top_store` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE `top_store`.`product` (
+  `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `price` DOUBLE NOT NULL,
+  `deleted` VARCHAR(45) NULL DEFAULT 0,
+   PRIMARY KEY (`ID`));

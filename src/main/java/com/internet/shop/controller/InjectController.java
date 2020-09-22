@@ -1,15 +1,12 @@
 package com.internet.shop.controller;
 
 import com.internet.shop.library.Injector;
-import com.internet.shop.model.Product;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.ShoppingCart;
 import com.internet.shop.model.User;
-import com.internet.shop.service.interfaces.ProductService;
 import com.internet.shop.service.interfaces.ShoppingCartService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +17,6 @@ public class InjectController extends HttpServlet {
     public static final Set<Role> USER_ROLE = Set.of(Role.of("USER"));
     public static final Set<Role> ADMIN_ROLE = Set.of(Role.of("ADMIN"));
     private static final Injector injector = Injector.getInstance("com.internet.shop");
-    private final ProductService productService =
-            (ProductService) injector.getInstance(ProductService.class);
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
     private final ShoppingCartService shoppingCartService =
@@ -30,19 +25,6 @@ public class InjectController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        /*
-        Initializing our DB
-        Creating default products
-         */
-        Product diorProduct = new Product("Dior Backstage Foundation",
-                BigDecimal.valueOf(2000.00));
-        Product limeCrimeProduct = new Product("Lime Crime Nude Eyeshadow Palette",
-                BigDecimal.valueOf(700.00));
-        Product guerlainProduct = new Product("Guerlain Cils D'Enfer So Volume Mascara",
-                BigDecimal.valueOf(1200.00));
-        productService.create(diorProduct);
-        productService.create(limeCrimeProduct);
-        productService.create(guerlainProduct);
         /*
         Creating two users
          */
