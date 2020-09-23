@@ -16,7 +16,11 @@
     <br>
     <h2>Please, provide required information below.</h2>
     <h4 style="color: #dc143c"> ${message} </h4>
-    <form method="post" action="${pageContext.request.contextPath}/product/add">
+    <form method="post" action="${pageContext.request.contextPath}/product/add"
+          style="font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-size: x-large">
+        <br>
         <label for="productName"> Name: </label>
         <div class="form-group">
             <input type="text" class="form-control form-control-lg" id="productName"
@@ -32,6 +36,5 @@
         <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
     </form>
 </div>
-<br>
 </body>
 </html>
