@@ -22,8 +22,8 @@ public class BuyProductController extends HttpServlet {
             throws IOException {
         Long productId = Long.parseLong(req.getParameter("id"));
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        shoppingCartService.getByUserId(userId)
-                .addProduct(productService.get(productId));
+        shoppingCartService.addProduct(shoppingCartService.getByUserId(userId),
+                productService.get(productId));
         resp.sendRedirect(req.getContextPath() + "/products/all");
     }
 }

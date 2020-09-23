@@ -13,6 +13,11 @@ public class Order {
         products = new ArrayList<>();
     }
 
+    public Order(Long id, Long userId) {
+        this.id = id;
+        this.userId = userId;
+    }
+
     public Long getId() {
         return id;
     }

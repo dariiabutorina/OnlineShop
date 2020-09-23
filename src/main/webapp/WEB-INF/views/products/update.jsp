@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title> Top Store | Edit Product</title>
+    <title>Top Store | Add Product </title>
 </head>
 <style>
     .btn-dark {
@@ -18,8 +18,9 @@
     <h4 style="color: #dc143c"> ${message} </h4>
     <form method="post" action="${pageContext.request.contextPath}/product/update"
           style="font-family: 'Montserrat', sans-serif;
-          text-transform: uppercase;
-          font-size: x-large">
+        text-transform: uppercase;
+        font-size: x-large">
+        <br>
         <label for="productName"> Name: </label>
         <div class="form-group">
             <input type="text" class="form-control form-control-lg" id="productName"

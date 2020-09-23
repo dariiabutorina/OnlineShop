@@ -40,7 +40,7 @@ public class UpdateUserDetailsController extends HttpServlet {
             updatingUser.setName(name);
             updatingUser.setPassword(password);
             userService.update(updatingUser);
-            resp.sendRedirect(req.getContextPath() + "/user/details?id=" + id);
+            resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             req.setAttribute("message", "Passwords must be equal.");
             req.getRequestDispatcher("/WEB-INF/views/users/update.jsp").forward(req, resp);

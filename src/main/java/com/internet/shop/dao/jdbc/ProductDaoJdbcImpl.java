@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.ProductDao;
-import com.internet.shop.exceptions.DataBaseConnectionExchangeFailedException;
+import com.internet.shop.exceptions.DataBaseDataExchangeFailedException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Product;
 import com.internet.shop.util.ConnectionUtil;
@@ -32,7 +32,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return product;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to create the product: "
+            throw new DataBaseDataExchangeFailedException("Failed to create the product: "
                     + product.getName(), exception);
         }
     }
@@ -48,7 +48,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get the product "
+            throw new DataBaseDataExchangeFailedException("Failed to get the product "
                     + "with id: " + id, exception);
         }
         return Optional.empty();
@@ -66,7 +66,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 products.add(product);
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
+            throw new DataBaseDataExchangeFailedException("Failed to get data", exception);
         }
         return products;
     }
@@ -74,7 +74,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product update(Product product) {
         String query = "UPDATE product SET name = ?, price = ? WHERE id = ? "
-                + "AND Deleted = false";
+                + "AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
@@ -83,7 +83,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return product;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to update the product: "
+            throw new DataBaseDataExchangeFailedException("Failed to update the product: "
                     + product.getName(), exception);
         }
     }
@@ -96,7 +96,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setString(1, String.valueOf(id));
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to delete the product"
+            throw new DataBaseDataExchangeFailedException("Failed to delete the product"
                     + " with id: " + id, e);
         }
     }
@@ -107,9 +107,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
     }
 
     private Product extractValue(ResultSet resultSet) throws SQLException {
-        long id = resultSet.getLong("ID");
-        String name = resultSet.getString("Name");
-        BigDecimal price = resultSet.getBigDecimal("Price");
+        long id = resultSet.getLong("id");
+        String name = resultSet.getString("name");
+        BigDecimal price = resultSet.getBigDecimal("price");
         Product product = new Product(name, price);
         product.setId(id);
         return product;

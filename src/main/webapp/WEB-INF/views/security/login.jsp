@@ -36,12 +36,8 @@
         </div>
         <br>
         <div class="container" align="center">
-            <button type="submit" class="btn btn-dark"> Sign in</button>
+            <button type="submit" class="btn btn-dark"> Sign in </button>
             <a href="${pageContext.request.contextPath}/registration" class="btn btn-dark"> Sign Up </a>
-            <br>
-            <br>
-            <a href="${pageContext.request.contextPath}/inject" class="btn btn-dark"> Inject Data </a>
-            <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
         </div>
     </div>
 </form>

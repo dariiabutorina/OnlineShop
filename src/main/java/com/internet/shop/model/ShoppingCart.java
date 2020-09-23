@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    private final List<Product> products;
+    private List<Product> products;
     private Long id;
     private Long userId;
 
     public ShoppingCart(Long userId) {
+        this.userId = userId;
+        products = new ArrayList<>();
+    }
+
+    public ShoppingCart(Long id, Long userId) {
+        this.id = id;
         this.userId = userId;
         products = new ArrayList<>();
     }
@@ -37,14 +43,12 @@ public class ShoppingCart {
         products.add(product);
     }
 
-    public Product getProduct(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Invalid input data");
-        }
-        return products.stream()
-                .filter(product -> product.getId().equals(id))
-                .findFirst()
-                .get();
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public void clear() {
@@ -56,7 +60,7 @@ public class ShoppingCart {
         return "Shopping Cart { "
                 + "id = " + id
                 + " , userId = " + userId
-                + " ,\nproducts = " + products
+                + "\n , products = " + products
                 + " }";
     }
 }
