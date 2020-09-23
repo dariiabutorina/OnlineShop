@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.OrderDao;
-import com.internet.shop.exceptions.DataBaseConnectionExchangeFailedException;
+import com.internet.shop.exceptions.DataBaseDataExchangeException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
@@ -29,14 +29,14 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
+            throw new DataBaseDataExchangeException("Failed to get data", exception);
         }
         return fillListOfOrdersWithProducts(orders);
     }
 
     @Override
     public Order create(Order order) {
-        String query = "INSERT INTO orders(uder_id) VALUE (?)";
+        String query = "INSERT INTO orders(user_id) VALUE (?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
                         Statement.RETURN_GENERATED_KEYS);
@@ -47,7 +47,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setId(resultSet.getLong(1));
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to create the order: "
+            throw new DataBaseDataExchangeException("Failed to create the order: "
                     + order.getId(), exception);
         }
         return addProducts(order);
@@ -65,7 +65,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get the order "
+            throw new DataBaseDataExchangeException("Failed to get the order "
                     + "with id: " + id, exception);
         }
         return fillOrderWithProducts(order);
@@ -82,7 +82,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
+            throw new DataBaseDataExchangeException("Failed to get data", exception);
         }
         return fillListOfOrdersWithProducts(orders);
     }
@@ -95,10 +95,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, order.getUserId());
-            statement.setString(2, String.valueOf(orderId));
+            statement.setLong(2, orderId);
             statement.executeUpdate();
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to update the order "
+            throw new DataBaseDataExchangeException("Failed to update the order "
                     + "with id: " + orderId, exception);
         }
         deleteProducts(orderId);
@@ -115,7 +115,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, id);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to delete the order "
+            throw new DataBaseDataExchangeException("Failed to delete the order "
                     + "with id: " + id, exception);
         }
     }
@@ -135,12 +135,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
             }
+            return order;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to add the products "
+            throw new DataBaseDataExchangeException("Failed to add the products "
                     + "in the order with id: " + orderId, exception);
         }
-        order.setProducts(getProducts(orderId));
-        return order;
     }
 
     private Optional<Order> fillOrderWithProducts(Order order) {
@@ -180,7 +179,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return products;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get the products "
+            throw new DataBaseDataExchangeException("Failed to get the products "
                     + "of the order with id: " + orderId, exception);
         }
     }
@@ -192,7 +191,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, orderId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to delete the order's "
+            throw new DataBaseDataExchangeException("Failed to delete the order's "
                     + "products with id: " + orderId, exception);
         }
     }

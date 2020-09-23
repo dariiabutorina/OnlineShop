@@ -16,6 +16,7 @@ public class ShoppingCart {
     public ShoppingCart(Long id, Long userId) {
         this.id = id;
         this.userId = userId;
+        products = new ArrayList<>();
     }
 
     public Long getId() {
@@ -59,7 +60,7 @@ public class ShoppingCart {
         return "Shopping Cart { "
                 + "id = " + id
                 + " , userId = " + userId
-                + " ,\nproducts = " + products
+                + "\n , products = " + products
                 + " }";
     }
 }

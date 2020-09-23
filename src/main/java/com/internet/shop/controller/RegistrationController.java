@@ -34,12 +34,13 @@ public class RegistrationController extends HttpServlet {
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("password-repeat");
 
-        if (name.length() <= 5
-                || login.length() <= 5
-                || password.length() <= 5) {
+        if (name.length() < 5
+                || login.length() < 5
+                || password.length() < 5) {
             req.setAttribute("message",
                     "All the fields must be filled in containing at least 5 characters.");
             req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
+            return;
         }
 
         if (password.equals(passwordRepeat)) {

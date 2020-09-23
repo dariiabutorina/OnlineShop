@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.ProductDao;
-import com.internet.shop.exceptions.DataBaseConnectionExchangeFailedException;
+import com.internet.shop.exceptions.DataBaseDataExchangeException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Product;
 import com.internet.shop.util.ConnectionUtil;
@@ -32,7 +32,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return product;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to create the product: "
+            throw new DataBaseDataExchangeException("Failed to create the product: "
                     + product.getName(), exception);
         }
     }
@@ -48,7 +48,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get the product "
+            throw new DataBaseDataExchangeException("Failed to get the product "
                     + "with id: " + id, exception);
         }
         return Optional.empty();
@@ -66,7 +66,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 products.add(product);
             }
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to get data", exception);
+            throw new DataBaseDataExchangeException("Failed to get data", exception);
         }
         return products;
     }
@@ -83,7 +83,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.executeUpdate();
             return product;
         } catch (SQLException exception) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to update the product: "
+            throw new DataBaseDataExchangeException("Failed to update the product: "
                     + product.getName(), exception);
         }
     }
@@ -96,7 +96,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setString(1, String.valueOf(id));
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new DataBaseConnectionExchangeFailedException("Failed to delete the product"
+            throw new DataBaseDataExchangeException("Failed to delete the product"
                     + " with id: " + id, e);
         }
     }
