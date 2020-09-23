@@ -165,8 +165,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");
         String password = resultSet.getString("password");
-        Set<Role> roles = getRoles(id);
-        return new User(id, name, login, password, roles);
+        return new User(id, name, login, password);
     }
 
     private Set<Role> getRoles(Long userId) {

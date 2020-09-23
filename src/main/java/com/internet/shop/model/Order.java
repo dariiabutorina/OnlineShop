@@ -13,10 +13,9 @@ public class Order {
         products = new ArrayList<>();
     }
 
-    public Order(Long id, Long userId, List<Product> products) {
+    public Order(Long id, Long userId) {
         this.id = id;
         this.userId = userId;
-        this.products = products;
     }
 
     public Long getId() {
