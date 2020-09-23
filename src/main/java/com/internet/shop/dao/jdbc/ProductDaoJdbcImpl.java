@@ -78,8 +78,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
-            statement.setString(2, String.valueOf(product.getPrice()));
-            statement.setString(3, String.valueOf(product.getId()));
+            statement.setBigDecimal(2, product.getPrice());
+            statement.setLong(3, product.getId());
             statement.executeUpdate();
             return product;
         } catch (SQLException exception) {
