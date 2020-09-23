@@ -100,7 +100,6 @@
     </table>
     <br>
     <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
-    <a href="${pageContext.request.contextPath}/logout" class="btn btn-dark"> Sign Out </a>
 </div>
 </body>
 </html>

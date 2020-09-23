@@ -21,7 +21,7 @@
 <%@include file="../header.jsp" %>
 <br>
 <div class="container" align="center" style="text-align: center">
-    <h2>My Shopping Cart </h2>
+    <h2> Shopping Cart </h2>
     <br>
     <table class="table table-hover" style="width: 1200px;
         text-align: center;

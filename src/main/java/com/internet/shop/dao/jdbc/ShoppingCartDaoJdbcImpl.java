@@ -110,7 +110,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, shoppingCart.getUserId());
-            statement.setString(2, String.valueOf(shoppingCartId));
+            statement.setLong(2, shoppingCartId);
             statement.executeUpdate();
         } catch (SQLException exception) {
             throw new DataBaseDataExchangeFailedException("Failed to update "
