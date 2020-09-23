@@ -72,7 +72,7 @@ CREATE TABLE `top_store`.`order_product`
     INDEX `op_fk_product_idx` (`id_product` ASC) VISIBLE,
     CONSTRAINT `op_fk_order`
         FOREIGN KEY (`id_order`)
-            REFERENCES `top_store`.`order` (`id`)
+            REFERENCES `top_store`.`orders` (`id`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     CONSTRAINT `op_fk_product`
