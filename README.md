@@ -7,6 +7,10 @@ Simple web-site, based on the RDMS MySQL (MySQLWorkbench used during creating th
 RBAC was chosen as the authorization mechanism via filters
 
 Statefull app (loging in -> session with id)
+ 
+Front-end:
+
+BootStrap, CSS, html
 
 Main functions:
 
@@ -21,6 +25,7 @@ Main functions:
   deleting orders, having access to its details
   
 - User:
+
   registration
   
   buying products
@@ -32,7 +37,3 @@ Main functions:
   viewing user's orders and its details
   
   viewing user's details and its updating
-  
-Front-end:
-
-BootStrap, CSS, html
