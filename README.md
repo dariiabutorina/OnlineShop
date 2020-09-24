@@ -4,9 +4,13 @@ A high-quality cosmetics online store
 
 Simple web-site, based on the RDMS MySQL (MySQLWorkbench used during creating the project)
 
+(There was also implemented a simple realization with the Storage class, without using JDBC)
+
 RBAC was chosen as the authorization mechanism via filters
 
 Statefull app (loging in -> session with id)
+
+Packaging: Apache Maven
  
 Front-end:
 
