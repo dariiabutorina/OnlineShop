@@ -1,9 +1,13 @@
 # Online Shop: TOP STORE
 
 A high-quality cosmetics online store
+
 Simple web-site, based on the RDMS MySQL (MySQLWorkbench used during creating the project)
+
 RBAC was chosen as the authorization mechanism via filters
+
 Statefull app (loging in -> session with id)
+
 Main functions:
 
 - Admin:
@@ -21,4 +25,5 @@ Main functions:
   viewing user's details and its updating
   
 Front-end:
+
 BootStrap, CSS, html
