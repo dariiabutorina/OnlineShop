@@ -6,11 +6,15 @@ Simple web-site, based on the RDMS MySQL (MySQLWorkbench was used during creatin
 
 (There was also implemented a simple realization with the Storage class, without using JDBC)
 
+The inner structure was created according to N-Tier architecture and SOLID principles 
+
 RBAC was chosen as the authorization mechanism managed with filters
 
 Statefull app (loging in -> session with id)
 
 Packaging: Apache Maven
+
+Web-server: Tomcat
  
 Front-end:
 
@@ -41,3 +45,7 @@ Main functions:
   viewing user's orders and its details
   
   viewing user's details and its updating
+  
+  
+
+![Home Page](https://i.imgur.com/9yThKJy.png)
