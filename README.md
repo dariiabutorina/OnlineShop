@@ -11,6 +11,8 @@ RBAC was chosen as the authorization mechanism managed with filters
 Statefull app (loging in -> session with id)
 
 Packaging: Apache Maven
+
+Web-server: Tomcat
  
 Front-end:
 
