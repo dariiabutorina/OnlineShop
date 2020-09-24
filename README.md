@@ -43,3 +43,5 @@ Main functions:
   viewing user's orders and its details
   
   viewing user's details and its updating
+
+![Home Page](https://i.imgur.com/9yThKJy.png)
