@@ -6,7 +6,7 @@ Simple web-site, based on the RDMS MySQL (MySQLWorkbench was used during creatin
 
 (There was also implemented a simple realization with the Storage class, without using JDBC)
 
-RBAC was chosen as the authorization mechanism via filters
+RBAC was chosen as the authorization mechanism managed with filters
 
 Statefull app (loging in -> session with id)
 
