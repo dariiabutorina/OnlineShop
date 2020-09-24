@@ -11,17 +11,26 @@ Statefull app (loging in -> session with id)
 Main functions:
 
 - Admin:
+
   creating, updating and deleting products
+  
   creating, updating and deleting users
+  
   managing users' roles
+  
   deleting orders, having access to its details
   
 - User:
   registration
+  
   buying products
+  
   access to the shopping cart
+  
   creating orders
+  
   viewing user's orders and its details
+  
   viewing user's details and its updating
   
 Front-end:
