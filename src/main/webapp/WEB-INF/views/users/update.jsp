@@ -21,11 +21,6 @@
           style="font-family: 'Montserrat', sans-serif;
           text-transform: uppercase;
           font-size: x-large">
-        <label for="userPassword"> Password: </label>
-        <div class="form-group">
-            <input type="password" class="form-control form-control-lg" id="userPassword"
-                   name="password" required placeholder="Your password" width="450 px">
-        </div>
         <label for="userName"> Name: </label>
         <div class="form-group">
             <input type="text" class="form-control form-control-lg" id="userName"

@@ -2,7 +2,6 @@ package com.internet.shop.controller.user;
 
 import com.internet.shop.library.Injector;
 import com.internet.shop.model.User;
-import com.internet.shop.security.AuthenticationService;
 import com.internet.shop.service.interfaces.UserService;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -27,7 +26,6 @@ public class UpdateUserNameController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String name = req.getParameter("name");
-        String password = req.getParameter("password");
 
         if (name.length() < 5) {
             req.setAttribute("message",
@@ -36,12 +34,6 @@ public class UpdateUserNameController extends HttpServlet {
         }
 
         User updatingUser = userService.get(id);
-
-        if (AuthenticationService.isPasswordInvalid(password, updatingUser)) {
-            req.setAttribute("message", "Incorrect password.");
-            req.getRequestDispatcher("/WEB-INF/views/users/update.jsp").forward(req, resp);
-        }
-
         updatingUser.setName(name);
         userService.update(updatingUser);
         resp.sendRedirect(req.getContextPath() + "/home");

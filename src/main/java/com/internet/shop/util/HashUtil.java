@@ -7,10 +7,10 @@ import java.security.SecureRandom;
 import org.apache.log4j.Logger;
 
 public class HashUtil {
+    private static final Logger LOGGER = Logger.getLogger(HashUtil.class);
     private static final String HASHING_ALGORITHM = "SHA-512";
     private static final String MESSAGE =
             "Password hashing failed. Unable to find the chosen algorithm: " + HASHING_ALGORITHM;
-    private static final Logger logger = Logger.getLogger(HashUtil.class);
 
     public static byte[] getSalt() {
         SecureRandom secureRandom = new SecureRandom();
@@ -29,7 +29,7 @@ public class HashUtil {
                 hashedPassword.append(String.format("%02x", element));
             }
         } catch (NoSuchAlgorithmException exception) {
-            logger.error(exception);
+            LOGGER.error(exception);
             throw new PasswordHashingException(MESSAGE, exception);
         }
         return hashedPassword.toString();
