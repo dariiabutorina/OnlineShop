@@ -9,7 +9,8 @@ import org.apache.log4j.Logger;
 
 public class HashUtil {
     private static final String HASHING_ALGORITHM = "SHA-512";
-    private static final String MESSAGE = "Password hashing failed";
+    private static final String MESSAGE =
+            "Password hashing failed. Unable to find the chosen algorithm: " + HASHING_ALGORITHM;
     private static final Logger logger = Logger.getLogger(HashUtil.class);
 
     public static byte[] getSalt() {
