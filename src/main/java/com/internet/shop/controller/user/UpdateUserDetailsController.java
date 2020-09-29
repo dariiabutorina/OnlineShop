@@ -13,7 +13,7 @@ public class UpdateUserDetailsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
-    private Long id = 0L;
+    private Long id;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

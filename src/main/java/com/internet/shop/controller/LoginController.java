@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
         } catch (AuthenticationException exception) {
             req.setAttribute("message", exception.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/security/login.jsp").forward(req, resp);
+            return;
         }
         resp.sendRedirect(req.getContextPath() + "/home");
     }

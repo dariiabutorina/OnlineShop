@@ -24,6 +24,7 @@ CREATE TABLE `top_store`.`user`
     `name`     VARCHAR(256) NOT NULL,
     `login`    VARCHAR(256) NOT NULL,
     `password` VARCHAR(256) NOT NULL,
+    `salt`     VARBINARY(16) NOT NULL
     `deleted`  TINYINT      NULL DEFAULT 0,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE

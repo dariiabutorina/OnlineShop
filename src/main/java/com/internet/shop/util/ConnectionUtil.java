@@ -8,13 +8,13 @@ import java.util.Properties;
 public class ConnectionUtil {
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException exception) {
             throw new RuntimeException("Can't find MySQL Driver", exception);
         }
     }
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
         Properties connectionProps = new Properties();
         connectionProps.put("user","root");
         connectionProps.put("password", "12345678");
