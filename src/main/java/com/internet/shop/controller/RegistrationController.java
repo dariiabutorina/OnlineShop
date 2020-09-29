@@ -45,13 +45,15 @@ public class RegistrationController extends HttpServlet {
         }
 
         if (password.equals(passwordRepeat)) {
+
             User newUser = new User(name, login, password, Set.of(Role.of("USER")));
             User createdUser = userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(createdUser.getId()));
             resp.sendRedirect(req.getContextPath() + "/home");
-        } else {
-            req.setAttribute("message", "Passwords must be equal.");
-            req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
+            return;
         }
+
+        req.setAttribute("message", "Passwords must be equal.");
+        req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
     }
 }
