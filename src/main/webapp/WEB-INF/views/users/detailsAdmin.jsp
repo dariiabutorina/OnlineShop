@@ -73,7 +73,7 @@
                 <c:out value="${user.login}"/>
             </td>
             <td style="padding-top: 23px">
-                <a href="${pageContext.request.contextPath}/user/update?id=${user.id}"
+                <a href="${pageContext.request.contextPath}/user/update/name?id=${user.id}"
                    class="btn btn-light">Edit</a>
             </td>
             <form method="get" action="${pageContext.request.contextPath}/user/role">

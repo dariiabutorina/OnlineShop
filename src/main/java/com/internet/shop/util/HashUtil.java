@@ -1,7 +1,6 @@
 package com.internet.shop.util;
 
 import com.internet.shop.exceptions.PasswordHashingException;
-import com.internet.shop.model.User;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -34,10 +33,6 @@ public class HashUtil {
             throw new PasswordHashingException(MESSAGE, exception);
         }
         return hashedPassword.toString();
-    }
-
-    public static boolean isValid(String password, User userFromDB) {
-        return hashPassword(password, userFromDB.getSalt()).equals(userFromDB.getPassword());
     }
 }
 

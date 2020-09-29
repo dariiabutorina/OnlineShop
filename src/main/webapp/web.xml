@@ -68,12 +68,20 @@
         <url-pattern>/user/delete</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>updateUser</servlet-name>
+        <servlet-name>updateUserDetails</servlet-name>
         <servlet-class>com.internet.shop.controller.user.UpdateUserDetailsController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>updateUser</servlet-name>
-        <url-pattern>/user/update</url-pattern>
+        <servlet-name>updateUserDetails</servlet-name>
+        <url-pattern>/user/update/name</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>updateUserPassword</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.UpdateUserPasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUserPassword</servlet-name>
+        <url-pattern>/user/update/password</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>addRoleUser</servlet-name>

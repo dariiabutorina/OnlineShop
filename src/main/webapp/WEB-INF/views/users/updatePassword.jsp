@@ -17,19 +17,24 @@
     <h4>Please, provide the required information below.</h4>
     <br>
     <h6 style="color: #dc143c"> ${message} </h6>
-    <form method="post" action="${pageContext.request.contextPath}/user/update/name"
+    <form method="post" action="${pageContext.request.contextPath}/user/update/password"
           style="font-family: 'Montserrat', sans-serif;
           text-transform: uppercase;
           font-size: x-large">
-        <label for="userPassword"> Password: </label>
+        <label for="oldPassword"> Old Password: </label>
         <div class="form-group">
-            <input type="password" class="form-control form-control-lg" id="userPassword"
-                   name="password" required placeholder="Your password" width="450 px">
+            <input type="password" class="form-control form-control-lg" id="oldPassword"
+                   name="old-password" required placeholder="Your password" width="450 px">
         </div>
-        <label for="userName"> Name: </label>
+        <label for="newPassword"> New Password: </label>
         <div class="form-group">
-            <input type="text" class="form-control form-control-lg" id="userName"
-                   name="name" required placeholder="Your name" width="450 px">
+            <input type="password" class="form-control form-control-lg" id="newPassword"
+                   name="new-password" required placeholder="Your password" width="450 px">
+        </div>
+        <label for="repeatPassword"> Repeat the password: </label>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-lg" id="repeatPassword"
+                   name="password-repeat" required placeholder="Your password" width="450 px">
         </div>
         <br>
         <button type="submit" class="btn btn-dark"> Save Changes</button>
