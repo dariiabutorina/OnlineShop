@@ -34,18 +34,19 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataBaseDataExchangeFailedException("Failed to get the user "
                     + "with login: " + login, exception);
         }
-        return addRolesToUser(user);
+        return addRolesToOptionalUser(user);
     }
 
     @Override
     public User create(User user) {
-        String query = "INSERT INTO user(name, login, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO user(name, login, password, salt) VALUES (?, ?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
                         Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
+            statement.setBytes(4, user.getSalt());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -73,7 +74,7 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataBaseDataExchangeFailedException("Failed to get the user "
                     + "with id: " + id, exception);
         }
-        return addRolesToUser(user);
+        return addRolesToOptionalUser(user);
     }
 
     @Override
@@ -98,14 +99,15 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User update(User user) {
         Long userId = user.getId();
-        String query = "UPDATE user SET name = ?, login = ?, password = ? WHERE id = ? "
-                + "AND deleted = false";
+        String query = "UPDATE user SET name = ?, login = ?, password = ?, salt = ? "
+                + "WHERE id = ? AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
-            statement.setString(4, String.valueOf(userId));
+            statement.setBytes(4, user.getSalt());
+            statement.setString(5, String.valueOf(userId));
             statement.executeUpdate();
         } catch (SQLException exception) {
             throw new DataBaseDataExchangeFailedException("Failed to update the user "
@@ -133,7 +135,7 @@ public class UserDaoJdbcImpl implements UserDao {
         return deleteById(user.getId());
     }
 
-    private Optional<User> addRolesToUser(User user) {
+    private Optional<User> addRolesToOptionalUser(User user) {
         if (user != null) {
             user.setRoles(getRoles(user.getId()));
             return Optional.of(user);
@@ -164,7 +166,8 @@ public class UserDaoJdbcImpl implements UserDao {
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");
         String password = resultSet.getString("password");
-        return new User(id, name, login, password);
+        byte[] salt = resultSet.getBytes("salt");
+        return new User(id, name, login, password, salt);
     }
 
     private Set<Role> getRoles(Long userId) {

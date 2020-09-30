@@ -4,6 +4,14 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version = "3.1">
     <servlet>
+        <servlet-name>injectAdmin</servlet-name>
+        <servlet-class>com.internet.shop.controller.InjectAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>injectAdmin</servlet-name>
+        <url-pattern>/create/admin</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>welcome</servlet-name>
         <servlet-class>com.internet.shop.controller.WelcomeController</servlet-class>
     </servlet>
@@ -68,13 +76,14 @@
         <url-pattern>/user/delete</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>updateUser</servlet-name>
-        <servlet-class>com.internet.shop.controller.user.UpdateUserDetailsController</servlet-class>
+        <servlet-name>updateUserDetails</servlet-name>
+        <servlet-class>com.internet.shop.controller.user.UpdateUserNameController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>updateUser</servlet-name>
-        <url-pattern>/user/update</url-pattern>
+        <servlet-name>updateUserDetails</servlet-name>
+        <url-pattern>/user/update/name</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>addRoleUser</servlet-name>
         <servlet-class>com.internet.shop.controller.user.AddRoleUserController</servlet-class>

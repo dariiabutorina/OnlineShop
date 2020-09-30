@@ -72,9 +72,9 @@
             <td style="text-align: center; padding-top: 30px">
                 <c:out value="${user.login}"/>
             </td>
-            <td style="padding-top: 23px">
-                <a href="${pageContext.request.contextPath}/user/update?id=${user.id}"
-                   class="btn btn-light">Edit</a>
+            <td style="text-align: center; padding-top: 24px">
+                <a href="${pageContext.request.contextPath}/user/update/name?id=${user.id}"
+                   class="btn btn-light">Edit Name</a>
             </td>
             <form method="get" action="${pageContext.request.contextPath}/user/role">
                 <div class="form-row align-items-center">

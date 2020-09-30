@@ -24,6 +24,7 @@ CREATE TABLE `top_store`.`user`
     `name`     VARCHAR(256) NOT NULL,
     `login`    VARCHAR(256) NOT NULL,
     `password` VARCHAR(256) NOT NULL,
+    `salt`     VARBINARY(16) NOT NULL,
     `deleted`  TINYINT      NULL DEFAULT 0,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE
@@ -106,11 +107,3 @@ INSERT INTO top_store.role(name) VALUE ('USER');
 INSERT INTO top_store.product(name, price) VALUES ('Dior Backstage Foundation', 2000.0);
 INSERT INTO top_store.product(name, price) VALUES ('Lime Crime Nude Eyeshadow Palette', 800.0);
 INSERT INTO top_store.product(name, price) VALUES ('Guerlain So Volume Mascara', 1200.0);
-INSERT INTO top_store.user(name, login, password) VALUES ('Dariia', 'DariiaPikul', 'Admin007');
-INSERT INTO top_store.user(name, login, password) VALUES ('Ashley', 'halsey', 'YungbludRocks789');
-INSERT INTO top_store.user(name, login, password) VALUES ('Max', 'maxim_dao', 'BeautyBlogger456');
-INSERT INTO top_store.user_role(id_user, id_role) VALUES (1, 1);
-INSERT INTO top_store.user_role(id_user, id_role) VALUES (2, 2);
-INSERT INTO top_store.user_role(id_user, id_role) VALUES (3, 2);
-INSERT INTO top_store.shopping_cart(user_id) VALUES (2);
-INSERT INTO top_store.shopping_cart(user_id) VALUES (3);

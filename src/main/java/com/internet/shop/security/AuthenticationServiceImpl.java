@@ -5,6 +5,7 @@ import com.internet.shop.library.Inject;
 import com.internet.shop.library.Service;
 import com.internet.shop.model.User;
 import com.internet.shop.service.interfaces.UserService;
+import com.internet.shop.util.HashUtil;
 import java.util.Optional;
 
 @Service
@@ -17,9 +18,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         final String message = "Incorrect login or password.";
         Optional<User> existingUser = userService.findByLogin(login);
         if (existingUser.isEmpty()
-                || !existingUser.get().getPassword().equals(password)) {
+                || isPasswordInvalid(password, existingUser.get())) {
             throw new AuthenticationException(message);
         }
         return existingUser.get();
+    }
+
+    private boolean isPasswordInvalid(String password, User userFromDB) {
+        return !HashUtil.hashPassword(password,
+                userFromDB.getSalt()).equals(userFromDB.getPassword());
     }
 }

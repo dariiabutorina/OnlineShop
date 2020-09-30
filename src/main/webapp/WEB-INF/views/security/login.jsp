@@ -36,10 +36,15 @@
         </div>
         <br>
         <div class="container" align="center">
-            <button type="submit" class="btn btn-dark"> Sign in </button>
+            <button type="submit" class="btn btn-dark"> Sign in</button>
             <a href="${pageContext.request.contextPath}/registration" class="btn btn-dark"> Sign Up </a>
         </div>
     </div>
 </form>
+<br>
+    <div class="container" align="center">
+        <a href="${pageContext.request.contextPath}/create/admin" class="btn btn-dark"> Create Admin </a>
+        <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
+    </div>
 </body>
 </html>

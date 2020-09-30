@@ -35,7 +35,6 @@
             <th scope="col">Name</th>
             <th scope="col">Login</th>
             <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -50,8 +49,8 @@
                 <c:out value="${user.login}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/user/update?id=${user.id}"
-                   class="btn btn-light">Edit</a>
+                <a href="${pageContext.request.contextPath}/user/update/name?id=${user.id}"
+                   class="btn btn-light">Edit Name</a>
             </td>
         </tr>
         </tbody>
