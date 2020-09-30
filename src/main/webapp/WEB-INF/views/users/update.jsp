@@ -25,6 +25,7 @@
         <div class="form-group">
             <input type="text" class="form-control form-control-lg" id="userName"
                    name="name" required placeholder="Your name" width="450 px">
+            <input type="hidden" name="upd_user_id" value="${upd_user_id}">
         </div>
         <br>
         <button type="submit" class="btn btn-dark"> Save Changes</button>

@@ -24,7 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return existingUser.get();
     }
 
-    static boolean isPasswordInvalid(String password, User userFromDB) {
+    private boolean isPasswordInvalid(String password, User userFromDB) {
         return !HashUtil.hashPassword(password,
                 userFromDB.getSalt()).equals(userFromDB.getPassword());
     }
