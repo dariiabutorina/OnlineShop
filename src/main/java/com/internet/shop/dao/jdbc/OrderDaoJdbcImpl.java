@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.OrderDao;
-import com.internet.shop.exceptions.DataBaseDataExchangeFailedException;
+import com.internet.shop.exceptions.DatabaseDataExchangeFailedException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
@@ -29,7 +29,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
         }
         return fillListOfOrdersWithProducts(orders);
     }
@@ -47,7 +47,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setId(resultSet.getLong(1));
             }
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to create the order: "
+            throw new DatabaseDataExchangeFailedException("Failed to create the order: "
                     + order.getId(), exception);
         }
         return addProducts(order);
@@ -65,7 +65,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to get the order "
+            throw new DatabaseDataExchangeFailedException("Failed to get the order "
                     + "with id: " + id, exception);
         }
         return fillOrderWithProducts(order);
@@ -82,7 +82,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
         }
         return fillListOfOrdersWithProducts(orders);
     }
@@ -98,7 +98,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(2, orderId);
             statement.executeUpdate();
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to update the order "
+            throw new DatabaseDataExchangeFailedException("Failed to update the order "
                     + "with id: " + orderId, exception);
         }
         deleteProducts(orderId);
@@ -114,7 +114,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, id);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to delete the order "
+            throw new DatabaseDataExchangeFailedException("Failed to delete the order "
                     + "with id: " + id, exception);
         }
     }
@@ -136,7 +136,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return order;
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to add the products "
+            throw new DatabaseDataExchangeFailedException("Failed to add the products "
                     + "in the order with id: " + orderId, exception);
         }
     }
@@ -178,7 +178,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return products;
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to get the products "
+            throw new DatabaseDataExchangeFailedException("Failed to get the products "
                     + "of the order with id: " + orderId, exception);
         }
     }
@@ -190,7 +190,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, orderId);
             return statement.executeUpdate() != 0;
         } catch (SQLException exception) {
-            throw new DataBaseDataExchangeFailedException("Failed to delete the order's "
+            throw new DatabaseDataExchangeFailedException("Failed to delete the order's "
                     + "products with id: " + orderId, exception);
         }
     }
