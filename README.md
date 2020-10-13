@@ -47,5 +47,17 @@ Main functions:
   viewing user's orders and its details
   
   viewing user's details and its updating
+  
+Configuration:
+
+- Tomcat (Local):
+
+  Deployment - war_exploded, context address - "/"
+
+- Database:
+
+  Run the configuration code from the database.sql file in your RDBMS
+
+  Configure your connection in the /com/internet/shop/util/ConnectionUtil.java
 
 ![Home Page](https://i.imgur.com/9yThKJy.png)
