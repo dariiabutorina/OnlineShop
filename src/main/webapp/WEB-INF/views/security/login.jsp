@@ -44,7 +44,7 @@
 <br>
     <div class="container" align="center">
         <a href="${pageContext.request.contextPath}/create/admin" class="btn btn-dark"> Create Admin </a>
-        <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
+        <a href="${pageContext.request.contextPath}/" class="btn btn-dark"> Go Back </a>
     </div>
 </body>
 </html>

@@ -21,6 +21,6 @@ text-transform: uppercase;">
 <br>
 <h2>Something went wrong.</h2>
 <br>
-<a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
+<a href="${pageContext.request.contextPath}/" class="btn btn-dark"> Go Back </a>
 </body>
 </html>

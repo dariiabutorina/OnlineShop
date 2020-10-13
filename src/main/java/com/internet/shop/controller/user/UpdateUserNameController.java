@@ -39,6 +39,6 @@ public class UpdateUserNameController extends HttpServlet {
         User updatingUser = userService.get(id);
         updatingUser.setName(name);
         userService.update(updatingUser);
-        resp.sendRedirect(req.getContextPath() + "/home");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

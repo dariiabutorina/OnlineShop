@@ -17,7 +17,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>welcome</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>registration</servlet-name>

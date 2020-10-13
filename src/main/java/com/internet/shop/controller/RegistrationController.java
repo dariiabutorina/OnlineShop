@@ -49,7 +49,7 @@ public class RegistrationController extends HttpServlet {
             User newUser = new User(name, login, password, Set.of(Role.of("USER")));
             User createdUser = userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(createdUser.getId()));
-            resp.sendRedirect(req.getContextPath() + "/home");
+            resp.sendRedirect(req.getContextPath() + "/");
             return;
         }
 

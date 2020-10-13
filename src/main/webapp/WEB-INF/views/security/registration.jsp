@@ -45,7 +45,7 @@
         </div>
         <br>
         <button type="submit" class="btn btn-dark"> Sing up</button>
-        <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
+        <a href="${pageContext.request.contextPath}/" class="btn btn-dark"> Go Back </a>
     </form>
 </div>
 </body>

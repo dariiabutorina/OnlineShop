@@ -85,7 +85,7 @@
     <div class="container" align="left" style="padding-bottom: 50px">
         <ul class="navbar-nav">
             <li class="nav-item active" style="width: 100px; position: absolute; left: 30px">
-                <a class="nav-link" href="${pageContext.request.contextPath}/home">Home</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
             </li>
             <li class="nav-item active" style="width: 150px; position: absolute; left: 170px">
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>

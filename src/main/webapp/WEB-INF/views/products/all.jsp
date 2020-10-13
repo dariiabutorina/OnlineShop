@@ -59,7 +59,7 @@
         </tbody>
     </table>
     <br>
-    <a href="${pageContext.request.contextPath}/home" class="btn btn-dark"> Go Back </a>
+    <a href="${pageContext.request.contextPath}/" class="btn btn-dark"> Go Back </a>
 </div>
 </body>
 </html>

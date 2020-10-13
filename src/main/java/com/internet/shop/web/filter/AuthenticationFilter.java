@@ -17,7 +17,7 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        allowedUrls = Set.of("/login", "/registration", "/home", "/create/admin");
+        allowedUrls = Set.of("/login", "/registration", "/", "/create/admin");
     }
 
     @Override
