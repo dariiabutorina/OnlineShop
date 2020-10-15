@@ -50,7 +50,7 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
 
 - **Tomcat (Local)**:
 
-  Deployment - war_exploded, context address — "/"
+  Deployment — _war_exploded_, context address — _"/"_
 
 - **Database**:
 
