@@ -47,5 +47,25 @@ Main functions:
   viewing user's orders and its details
   
   viewing user's details and its updating
+  
+Configuration:
+
+- Tomcat (Local):
+
+  Deployment - war_exploded, context address - "/"
+
+- Database:
+
+  Run the configuration code from the database.sql file in your RDBMS
+
+  Configure your connection in the /com/internet/shop/util/ConnectionUtil.java
+  
+- Authorizating as an admin:
+
+  On the login page press "Create Admin" button
+  
+  Then type in "Admin" for the login and "Admin007" for the password
+  
+  For authorizating as a user press "Sign Up" button on the login page or navigation bar
 
 ![Home Page](https://i.imgur.com/9yThKJy.png)
