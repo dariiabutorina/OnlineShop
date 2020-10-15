@@ -8,8 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 public class UpdateUserNameController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(UpdateUserNameController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -27,7 +29,6 @@ public class UpdateUserNameController extends HttpServlet {
             throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("upd_user_id"));
         String name = req.getParameter("name");
-
         if (name.length() < 5) {
             req.setAttribute("upd_user_id", id);
             req.setAttribute("message",
@@ -35,10 +36,10 @@ public class UpdateUserNameController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/users/update.jsp").forward(req, resp);
             return;
         }
-
         User updatingUser = userService.get(id);
         updatingUser.setName(name);
-        userService.update(updatingUser);
+        User updatedUser = userService.update(updatingUser);
+        LOGGER.info("The user's - " + updatingUser + " name was updated: " + updatingUser);
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }

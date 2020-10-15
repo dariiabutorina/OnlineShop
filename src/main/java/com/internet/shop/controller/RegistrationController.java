@@ -12,8 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 public class RegistrationController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(RegistrationController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -34,7 +36,6 @@ public class RegistrationController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("password-repeat");
-
         if (name.length() < 5
                 || login.length() < 5
                 || password.length() < 5) {
@@ -43,16 +44,14 @@ public class RegistrationController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
             return;
         }
-
         if (password.equals(passwordRepeat)) {
-
             User newUser = new User(name, login, password, Set.of(Role.of("USER")));
             User createdUser = userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(createdUser.getId()));
+            LOGGER.info("The user - " + newUser + " was registered");
             resp.sendRedirect(req.getContextPath() + "/");
             return;
         }
-
         req.setAttribute("message", "Passwords must be equal.");
         req.getRequestDispatcher("/WEB-INF/views/security/registration.jsp").forward(req, resp);
     }

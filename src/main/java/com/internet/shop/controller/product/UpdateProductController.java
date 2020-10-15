@@ -9,8 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 public class UpdateProductController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(UpdateProductController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -40,7 +42,8 @@ public class UpdateProductController extends HttpServlet {
         updatingProduct.setId(id);
         updatingProduct.setName(name);
         updatingProduct.setPrice(productPrice);
-        productService.update(updatingProduct);
+        Product updatedProduct = productService.update(updatingProduct);
+        LOGGER.info("The product - " + updatingProduct + " was updated: " + updatedProduct);
         resp.sendRedirect(req.getContextPath() + "/products/all/admin");
     }
 }
