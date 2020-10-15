@@ -18,9 +18,7 @@ Web-server: Tomcat
 
 Logger: Log4j
  
-Front-end:
-
-BootStrap, CSS, html
+Front-end: BootStrap, CSS, html
 
 Main functions:
 
