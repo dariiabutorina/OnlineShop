@@ -10,7 +10,7 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
 
 **RBAC** was chosen as the authorization mechanism managed with **filters**
 
-**Statefull app** (authentication —> session with id)
+**Stateful app** (authentication —> session with the id)
 
 **Packaging:** Apache Maven
 
@@ -58,13 +58,13 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
 
   Configure your _connection properties_ in the _/com/internet/shop/util/ConnectionUtil.java_
   
-- **Authorizating as an admin**:
+- **Authorizing as an admin**:
 
   On the _login page_ (_"Sign In"_ button) press the _"Create Admin"_ button
   
   Then type in _"Admin"_ for the _login_ and _"Admin007"_ for the _password_ on the login page
 
-- **Authorizating as a user**:
+- **Authorizing as a user**:
 
   Register at first — press the _"Sign Up"_ button on the login page or navigation bar
   
