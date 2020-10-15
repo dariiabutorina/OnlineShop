@@ -56,7 +56,7 @@ Front-end: BootStrap, CSS, html
 
   Run the configuration code from the database.sql file in your RDBMS
 
-  Configure your connection in the /com/internet/shop/util/ConnectionUtil.java
+  Configure your connection properties in the /com/internet/shop/util/ConnectionUtil.java
   
 - Authorizating as an admin:
 
