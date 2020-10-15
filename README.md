@@ -20,7 +20,7 @@ Logger: Log4j
  
 Front-end: BootStrap, CSS, html
 
-Main functions:
+# Main functions:
 
 - Admin:
 
@@ -46,7 +46,7 @@ Main functions:
   
   viewing user's details and its updating
   
-Configuration:
+# Configuration:
 
 - Tomcat (Local):
 
