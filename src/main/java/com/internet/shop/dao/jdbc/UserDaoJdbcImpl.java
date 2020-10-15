@@ -16,9 +16,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.apache.log4j.Logger;
 
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
+    private static final Logger logger = Logger.getLogger(UserDaoJdbcImpl.class);
+
     @Override
     public Optional<User> findByLogin(String login) {
         User user = null;
@@ -39,6 +42,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User user) {
+        logger.warn("Creating the user - " + user);
         String query = "INSERT INTO user(name, login, password, salt) VALUES (?, ?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
@@ -52,9 +56,11 @@ public class UserDaoJdbcImpl implements UserDao {
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(1));
             }
+            logger.info("The user " + user + " was created successfully");
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to create the user: "
-                    + user.getName(), exception);
+            String message = "Failed to create the user: " + user;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         return addRoles(user);
     }
@@ -98,6 +104,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User update(User user) {
+        logger.warn("Trying to update the user - " + user);
         Long userId = user.getId();
         String query = "UPDATE user SET name = ?, login = ?, password = ?, salt = ? "
                 + "WHERE id = ? AND deleted = false";
@@ -109,9 +116,11 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setBytes(4, user.getSalt());
             statement.setString(5, String.valueOf(userId));
             statement.executeUpdate();
+            logger.info("The user with id " + userId + " was updated successfully");
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to update the user "
-                    + "with id: " + userId, exception);
+            String message = "Failed to update the user with id: " + userId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         deleteRoles(userId);
         return addRoles(user);
@@ -119,14 +128,20 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public boolean deleteById(Long id) {
+        logger.warn("Trying to delete the order with id " + id);
         String query = "UPDATE user SET deleted = true WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
-            return statement.executeUpdate() != 0;
+            if (statement.executeUpdate() != 0) {
+                logger.info("The user with id " + id + " was deleted successfully");
+                return true;
+            }
+            return false;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete the user "
-                    + "with id: " + id, exception);
+            String message = "Failed to delete the user with id: " + id;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
@@ -144,6 +159,7 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     private User addRoles(User user) {
+        logger.warn("Trying to add the roles to the user - " + user);
         String query = "INSERT INTO user_role(id_user, id_role) "
                 + "VALUES (?, (SELECT id FROM role WHERE name = ?))";
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -153,9 +169,11 @@ public class UserDaoJdbcImpl implements UserDao {
                 statement.setString(2, role.getRoleName().name());
                 statement.executeUpdate();
             }
+            logger.info("The roles were successfully added to the user: " + user);
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to add the roles "
-                    + "to the user: " + user.getName(), exception);
+            String message = "Failed to add the roles to the user: " + user;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         user.setRoles(getRoles(user.getId()));
         return user;
@@ -190,15 +208,20 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private boolean deleteRoles(Long userId) {
+    private void deleteRoles(Long userId) {
+        logger.warn("Trying to delete the roles of the user with id " + userId);
         String query = "DELETE FROM user_role WHERE id_user = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
-            return statement.executeUpdate() != 0;
+            if (statement.executeUpdate() != 0) {
+                logger.info("The roles of the user with id = " + userId
+                        + " were successfully deleted");
+            }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete the user's roles "
-                    + "by user id: " + userId, exception);
+            String message = "Failed to delete the roles of the user with id: " + userId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 }

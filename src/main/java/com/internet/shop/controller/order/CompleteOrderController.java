@@ -10,10 +10,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class CompleteOrderController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(CompleteOrderController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
@@ -25,7 +23,6 @@ public class CompleteOrderController extends HttpServlet {
             throws IOException {
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
-        LOGGER.info("Completed the order of the shopping cart - " + shoppingCart);
         orderService.completeOrder(shoppingCart);
         resp.sendRedirect(req.getContextPath() + "/user/orders");
     }

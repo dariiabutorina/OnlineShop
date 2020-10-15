@@ -14,9 +14,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.apache.log4j.Logger;
 
 @Dao
 public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
+    private static final Logger logger = Logger.getLogger(ProductDaoJdbcImpl.class);
+
     @Override
     public Optional<ShoppingCart> getByUserId(Long userId) {
         ShoppingCart shoppingCart = null;
@@ -34,16 +37,9 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         return fillShoppingCartWithProducts(shoppingCart);
     }
 
-    private Optional<ShoppingCart> fillShoppingCartWithProducts(ShoppingCart shoppingCart) {
-        if (shoppingCart != null) {
-            shoppingCart.setProducts(getProducts(shoppingCart.getId()));
-            return Optional.of(shoppingCart);
-        }
-        return Optional.empty();
-    }
-
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
+        logger.warn("Creating the shopping cart - " + shoppingCart);
         String query = "INSERT INTO shopping_cart(user_id) VALUE (?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
@@ -54,9 +50,11 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             if (resultSet.next()) {
                 shoppingCart.setId(resultSet.getLong(1));
             }
+            logger.info("The shopping cart - " + shoppingCart + " was created successfully");
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to create "
-                    + "the shopping cart: " + shoppingCart.getId(), exception);
+            String message = "Failed to create the shopping cart: " + shoppingCart;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         return shoppingCart;
     }
@@ -95,15 +93,9 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         return fillListOfCartsWithProducts(shoppingCarts);
     }
 
-    private List<ShoppingCart> fillListOfCartsWithProducts(List<ShoppingCart> shoppingCarts) {
-        for (int index = 0; index < shoppingCarts.size(); index++) {
-            shoppingCarts.get(index).setProducts(getProducts(shoppingCarts.get(index).getId()));
-        }
-        return shoppingCarts;
-    }
-
     @Override
     public ShoppingCart update(ShoppingCart shoppingCart) {
+        logger.warn("Updating the shopping cart - " + shoppingCart);
         Long shoppingCartId = shoppingCart.getId();
         String query = "UPDATE shopping_cart SET user_id = ? WHERE id = ? "
                 + "AND deleted = false";
@@ -112,9 +104,11 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             statement.setLong(1, shoppingCart.getUserId());
             statement.setLong(2, shoppingCartId);
             statement.executeUpdate();
+            logger.info("The shopping cart " + shoppingCart + " was updated successfully");
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to update "
-                    + "the shopping cart with id: " + shoppingCartId, exception);
+            String message = "Failed to update the shopping cart with id: " + shoppingCartId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         deleteProducts(shoppingCartId);
         return addProducts(shoppingCart);
@@ -122,15 +116,21 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     @Override
     public boolean deleteById(Long id) {
+        logger.warn("Deleting the shopping cart with id = " + id);
         deleteProducts(id);
         String query = "UPDATE shopping_cart SET deleted = true WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
-            return statement.executeUpdate() != 0;
+            if (statement.executeUpdate() != 0) {
+                logger.info("The shopping cart with id = " + id + " was successfully deleted");
+                return true;
+            }
+            return false;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete "
-                    + "the shopping cart with id: " + id, exception);
+            String message = "Failed to delete the shopping cart with id: " + id;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
@@ -139,7 +139,23 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         return deleteById(shoppingCart.getId());
     }
 
+    private Optional<ShoppingCart> fillShoppingCartWithProducts(ShoppingCart shoppingCart) {
+        if (shoppingCart != null) {
+            shoppingCart.setProducts(getProducts(shoppingCart.getId()));
+            return Optional.of(shoppingCart);
+        }
+        return Optional.empty();
+    }
+
+    private List<ShoppingCart> fillListOfCartsWithProducts(List<ShoppingCart> shoppingCarts) {
+        for (int index = 0; index < shoppingCarts.size(); index++) {
+            shoppingCarts.get(index).setProducts(getProducts(shoppingCarts.get(index).getId()));
+        }
+        return shoppingCarts;
+    }
+
     private ShoppingCart addProducts(ShoppingCart shoppingCart) {
+        logger.warn("Adding products to the shopping cart - " + shoppingCart);
         Long shoppingCartId = shoppingCart.getId();
         String query = "INSERT INTO shopping_cart_product VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -149,10 +165,12 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
             }
+            logger.info("The products were successfully added to the shopping cart " + shoppingCart);
             return shoppingCart;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to add the products "
-                    + "to the shopping cart with id: " + shoppingCartId, exception);
+            String message = "Failed to add the products to the shopping cart with id: " + shoppingCartId;
+            logger.warn(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
@@ -183,15 +201,19 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private boolean deleteProducts(Long shoppingCartId) {
+    private void deleteProducts(Long shoppingCartId) {
+        logger.warn("Trying to delete the products of the shopping cart with id = " + shoppingCartId);
         String query = "DELETE FROM shopping_cart_product WHERE id_shopping_cart = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, shoppingCartId);
-            return statement.executeUpdate() != 0;
+            if (statement.executeUpdate() != 0) {
+                logger.info("The products were successfully deleted ");
+            }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete "
-                    + "the shopping cart's products with id: " + shoppingCartId, exception);
+            String message = "Failed to delete the products from the shopping cart with id = " + shoppingCartId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 }

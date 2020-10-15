@@ -14,11 +14,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.apache.log4j.Logger;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
+    private static final Logger logger = Logger.getLogger(ProductDaoJdbcImpl.class);
+
     @Override
     public Product create(Product product) {
+        logger.warn("Creating the product - " + product);
         String query = "INSERT INTO product(name, price) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
@@ -30,10 +34,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (resultSet.next()) {
                 product.setId(resultSet.getLong(1));
             }
+            logger.info("The product " + product + " was created successfully");
             return product;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to create the product: "
-                    + product.getName(), exception);
+            String message = "Failed to create the product: " + product.getName();
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
@@ -73,6 +79,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
+        logger.warn("Trying to update the product - " + product);
         String query = "UPDATE product SET name = ?, price = ? WHERE id = ? "
                 + "AND deleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
@@ -81,23 +88,31 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setBigDecimal(2, product.getPrice());
             statement.setLong(3, product.getId());
             statement.executeUpdate();
+            logger.info("The product " + product + " was updated successfully");
             return product;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to update the product: "
-                    + product.getName(), exception);
+            String message = "Failed to update the product: " + product.getName();
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
     @Override
     public boolean deleteById(Long id) {
+        logger.warn("Trying to delete the product with id = " + id);
         String query = "UPDATE product SET deleted = true WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, String.valueOf(id));
-            return statement.executeUpdate() == 1;
-        } catch (SQLException e) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete the product"
-                    + " with id: " + id, e);
+            if (statement.executeUpdate() == 1) {
+                logger.info("The product with id = " + id + " deleted successfully");
+                return true;
+            }
+            return false;
+        } catch (SQLException exception) {
+            String message = "Failed to delete the product with id: " + id;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 

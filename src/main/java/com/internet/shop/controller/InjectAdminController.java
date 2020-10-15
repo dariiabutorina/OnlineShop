@@ -9,10 +9,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class InjectAdminController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(InjectAdminController.class);
     private static final Set<Role> ADMIN = Set.of(Role.of("ADMIN"));
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService
@@ -23,7 +21,6 @@ public class InjectAdminController extends HttpServlet {
             throws IOException {
         User admin = new User("Admin", "Admin", "Admin007", ADMIN);
         userService.create(admin);
-        LOGGER.info("The admin - " + admin + " was created");
         resp.sendRedirect(req.getContextPath() + "/login");
     }
 }

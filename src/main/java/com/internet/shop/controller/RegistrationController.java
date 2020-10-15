@@ -12,10 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class RegistrationController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(RegistrationController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -48,7 +46,6 @@ public class RegistrationController extends HttpServlet {
             User newUser = new User(name, login, password, Set.of(Role.of("USER")));
             User createdUser = userService.create(newUser);
             shoppingCartService.create(new ShoppingCart(createdUser.getId()));
-            LOGGER.info("The user - " + newUser + " was registered");
             resp.sendRedirect(req.getContextPath() + "/");
             return;
         }

@@ -9,10 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class UpdateProductController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(UpdateProductController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -30,20 +28,17 @@ public class UpdateProductController extends HttpServlet {
             throws ServletException, IOException {
         String name = req.getParameter("name");
         String price = req.getParameter("price");
-
         if (name.length() == 0
                 || price.length() == 0) {
             req.setAttribute("message", "All the fields must be filled in.");
             req.getRequestDispatcher("/WEB-INF/views/products/update.jsp").forward(req, resp);
         }
-
         BigDecimal productPrice = BigDecimal.valueOf(Double.parseDouble(req.getParameter("price")));
         Product updatingProduct = productService.get(id);
         updatingProduct.setId(id);
         updatingProduct.setName(name);
         updatingProduct.setPrice(productPrice);
         Product updatedProduct = productService.update(updatingProduct);
-        LOGGER.info("The product - " + updatingProduct + " was updated: " + updatedProduct);
         resp.sendRedirect(req.getContextPath() + "/products/all/admin");
     }
 }

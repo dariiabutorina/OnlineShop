@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class OrderDaoImpl implements OrderDao {
-
     @Override
     public Order create(Order order) {
         Storage.addOrder(order);

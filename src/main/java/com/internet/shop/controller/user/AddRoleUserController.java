@@ -11,10 +11,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class AddRoleUserController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(AddRoleUserController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -32,7 +30,6 @@ public class AddRoleUserController extends HttpServlet {
         user.setRoles(roles);
         shoppingCartService.getByUserId(userId);
         userService.update(user);
-        LOGGER.info("The user - " + user + " gained a new role - " + role.getRoleName());
         resp.sendRedirect(req.getContextPath() + "/users/all");
     }
 }

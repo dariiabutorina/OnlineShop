@@ -14,9 +14,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.apache.log4j.Logger;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
+    private static final Logger logger = Logger.getLogger(OrderDaoJdbcImpl.class);
+
     @Override
     public List<Order> getUsersOrders(Long userId) {
         List<Order> orders = new ArrayList<>();
@@ -36,6 +39,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order create(Order order) {
+        logger.warn("Creating the order - " + order);
         String query = "INSERT INTO orders(user_id) VALUE (?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
@@ -46,9 +50,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             if (resultSet.next()) {
                 order.setId(resultSet.getLong(1));
             }
+            logger.info("The order " + order + " was created successfully");
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to create the order: "
-                    + order.getId(), exception);
+            String message = "Failed to create the order: " + order;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         return addProducts(order);
     }
@@ -89,6 +95,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order update(Order order) {
+        logger.warn("Trying to update the order - " + order);
         Long orderId = order.getId();
         String query = "UPDATE orders SET user_id = ? WHERE id = ? "
                 + "AND deleted = false";
@@ -97,9 +104,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, order.getUserId());
             statement.setLong(2, orderId);
             statement.executeUpdate();
+            logger.info("The order with id " + orderId + " was updated successfully");
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to update the order "
-                    + "with id: " + orderId, exception);
+            String message = "Failed to update the order with id: " + orderId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
         deleteProducts(orderId);
         return addProducts(order);
@@ -107,15 +116,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public boolean deleteById(Long id) {
-        String query;
-        query = "UPDATE orders SET deleted = true WHERE id = ?";
+        logger.warn("Trying to delete the order with id " + id);
+        String query = "UPDATE orders SET deleted = true WHERE id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
-            return statement.executeUpdate() != 0;
+            if (statement.executeUpdate() != 0) {
+                logger.info("The order with id " + id + " was deleted successfully");
+                return true;
+            }
+            return false;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete the order "
-                    + "with id: " + id, exception);
+            String message = "Failed to delete the order with id: " + id;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
@@ -125,6 +139,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private Order addProducts(Order order) {
+        logger.warn("Trying to add the products to the order - " + order);
         Long orderId = order.getId();
         String query = "INSERT INTO order_product(id_order, id_product) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -134,10 +149,12 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
             }
+            logger.info("The products were successfully added to the order with id: " + orderId);
             return order;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to add the products "
-                    + "in the order with id: " + orderId, exception);
+            String message = "Failed to add the products in the order with id: " + orderId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 
@@ -183,15 +200,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private boolean deleteProducts(Long orderId) {
+    private void deleteProducts(Long orderId) {
+        logger.warn("Trying to delete the products of the order with id " + orderId);
         String query = "DELETE FROM order_product WHERE id_order = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, orderId);
-            return statement.executeUpdate() != 0;
+            if (statement.executeUpdate() != 0) {
+                logger.info("The products of the order with id = " + orderId
+                        + " were successfully deleted");
+            }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to delete the order's "
-                    + "products with id: " + orderId, exception);
+            String message = "Failed to delete the products from the order with id: " + orderId;
+            logger.error(message, exception);
+            throw new DatabaseDataExchangeFailedException(message, exception);
         }
     }
 }

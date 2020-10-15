@@ -8,10 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class UpdateUserNameController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(UpdateUserNameController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
@@ -38,8 +36,7 @@ public class UpdateUserNameController extends HttpServlet {
         }
         User updatingUser = userService.get(id);
         updatingUser.setName(name);
-        User updatedUser = userService.update(updatingUser);
-        LOGGER.info("The user's - " + updatingUser + " name was updated: " + updatingUser);
+        userService.update(updatingUser);
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }

@@ -9,10 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Logger;
 
 public class AddProductController extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(AddProductController.class);
     private static final Injector injector = Injector.getInstance("com.internet.shop");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -37,7 +35,6 @@ public class AddProductController extends HttpServlet {
 
         BigDecimal productPrice = BigDecimal.valueOf(Double.parseDouble(req.getParameter("price")));
         Product product = productService.create(new Product(name, productPrice));
-        LOGGER.info("Created the product - " + product);
         resp.sendRedirect(req.getContextPath() + "/products/all/admin");
     }
 }
