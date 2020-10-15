@@ -70,4 +70,6 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
   
   Then sign in on the login page (_"Sign In"_ button)
 
-![Home Page](https://i.imgur.com/9yThKJy.png)
+![Home Page](https://i.imgur.com/JjQh5KP.png)
+
+![Login Page](https://i.imgur.com/jaPWeaJ.png)
