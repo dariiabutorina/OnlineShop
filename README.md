@@ -2,7 +2,9 @@
 
 A high-quality cosmetics online store
 
-Simple **web-site**, based on the **RDBMS MySQL** (MySQLWorkbench was used during creating the project) using **JDBC**
+Simple **web-site**, based on the **RDBMS MySQL** 
+
+(MySQLWorkbench was used during creating the project) using **JDBC**
 
 (There was also implemented a plain implementation with the Storage class, without using JDBC)
 
