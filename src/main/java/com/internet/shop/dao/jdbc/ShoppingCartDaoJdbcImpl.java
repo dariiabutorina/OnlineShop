@@ -165,10 +165,12 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
             }
-            logger.info("The products were successfully added to the shopping cart " + shoppingCart);
+            logger.info("The products were successfully added to the shopping cart "
+                    + shoppingCart);
             return shoppingCart;
         } catch (SQLException exception) {
-            String message = "Failed to add the products to the shopping cart with id: " + shoppingCartId;
+            String message = "Failed to add the products to the shopping cart with id: "
+                    + shoppingCartId;
             logger.warn(message, exception);
             throw new DatabaseDataExchangeFailedException(message, exception);
         }
@@ -202,7 +204,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     }
 
     private void deleteProducts(Long shoppingCartId) {
-        logger.warn("Trying to delete the products of the shopping cart with id = " + shoppingCartId);
+        logger.warn("Trying to delete the products of the shopping cart with id = "
+                + shoppingCartId);
         String query = "DELETE FROM shopping_cart_product WHERE id_shopping_cart = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
@@ -211,7 +214,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 logger.info("The products were successfully deleted ");
             }
         } catch (SQLException exception) {
-            String message = "Failed to delete the products from the shopping cart with id = " + shoppingCartId;
+            String message = "Failed to delete the products from the shopping cart with id = "
+                    + shoppingCartId;
             logger.error(message, exception);
             throw new DatabaseDataExchangeFailedException(message, exception);
         }

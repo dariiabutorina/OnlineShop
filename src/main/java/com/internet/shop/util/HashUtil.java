@@ -20,7 +20,8 @@ public class HashUtil {
     }
 
     public static String hashPassword(String password, byte[] salt) {
-        logger.warn("Trying to hash the password withe the " + HASHING_ALGORITHM + " hashing algorithm");
+        logger.warn("Trying to hash the password withe the " + HASHING_ALGORITHM
+                + " hashing algorithm");
         StringBuilder hashedPassword = new StringBuilder();
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(HASHING_ALGORITHM);
