@@ -24,27 +24,27 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
 
 - **Admin**:
 
-  creating, updating and deleting products
+  Creating, updating and deleting products
   
-  creating, updating and deleting users
+  Creating, updating and deleting users
   
-  managing users' roles
+  Managing users' roles
   
-  deleting orders, having access to its details
+  Deleting orders, having access to its details
   
 - **User**:
 
-  registration
+  Registering
   
-  buying products
+  Buying products
   
-  access to the shopping cart
+  Having access to the shopping cart
   
-  creating orders
+  Creating orders
   
-  viewing user's orders and its details
+  Viewing user's orders and its details
   
-  viewing user's details and its updating
+  Viewing user's details and its updating
   
 # Configuration:
 
