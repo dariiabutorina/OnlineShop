@@ -69,7 +69,11 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
   Register at first — press the _"Sign Up"_ button on the login page or navigation bar
   
   Then sign in on the login page (_"Sign In"_ button)
+  
+# Preview:
 
 ![Home Page](https://i.imgur.com/JjQh5KP.png)
 
 ![Login Page](https://i.imgur.com/jaPWeaJ.png)
+
+![All Products (Admin) Page](https://i.imgur.com/HgPEuZN.png)
