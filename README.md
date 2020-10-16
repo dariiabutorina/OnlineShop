@@ -2,7 +2,9 @@
 
 A high-quality cosmetics online store
 
-Simple **web-site**, based on the **RDBMS MySQL** (MySQLWorkbench was used during creating the project) using **JDBC**
+Simple **web-site**, based on the **RDBMS MySQL** 
+
+(MySQLWorkbench was used during creating the project) using **JDBC**
 
 (There was also implemented a plain implementation with the Storage class, without using JDBC)
 
@@ -50,25 +52,25 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
 
 - **Tomcat (Local)**:
 
-  Deployment — _war_exploded_, context address — _"/"_
+  **Deployment** — war_exploded, context address — "/"
 
 - **Database**:
 
-  Run the _configuration code_ from the _database.sql_ file in your RDBMS
+  Run the configuration code from the **/resources/database.sql** file in your RDBMS
 
-  Configure your _connection properties_ in the _/com/internet/shop/util/ConnectionUtil.java_
+  Configure your connection properties in the **/util/ConnectionUtil.java**
   
 - **Authorizing as an admin**:
 
-  On the _login page_ (_"Sign In"_ button) press the _"Create Admin"_ button
+  On the **login page** ("Sign In" button) press the "Create Admin" button
   
-  Then type in _"Admin"_ for the _login_ and _"Admin007"_ for the _password_ on the login page
+  Then type in "Admin" for the **login** and "Admin007" for the **password** on the login page
 
 - **Authorizing as a user**:
 
-  Register at first — press the _"Sign Up"_ button on the login page or navigation bar
+  **Register** at first — press the "Sign Up" button on the login page or navigation bar
   
-  Then sign in on the login page (_"Sign In"_ button)
+  Then **sign in on** the login page ("Sign In" button)
   
 # Preview:
 
