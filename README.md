@@ -72,6 +72,10 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
   
   Then **sign in on** the login page ("Sign In" button)
   
+# Author:
+
+[Dariia Pikul](https://github.com/DariiaPikul)
+  
 # Preview:
 
 ![Home Page](https://i.imgur.com/JjQh5KP.png)
