@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.OrderDao;
-import com.internet.shop.exceptions.DatabaseDataExchangeFailedException;
+import com.internet.shop.exceptions.DatabaseDataExchangeException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Order;
 import com.internet.shop.model.Product;
@@ -32,7 +32,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeException("Failed to get data", exception);
         }
         return fillListOfOrdersWithProducts(orders);
     }
@@ -52,9 +52,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             logger.info("The order " + order + " was created successfully");
         } catch (SQLException exception) {
-            String message = "Failed to create the order: " + order;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to create the order: "
+                    + order, exception);
         }
         return addProducts(order);
     }
@@ -71,7 +70,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the order "
+            throw new DatabaseDataExchangeException("Failed to get the order "
                     + "with id: " + id, exception);
         }
         return fillOrderWithProducts(order);
@@ -88,7 +87,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 orders.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeException("Failed to get data", exception);
         }
         return fillListOfOrdersWithProducts(orders);
     }
@@ -106,9 +105,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.executeUpdate();
             logger.info("The order with id " + orderId + " was updated successfully");
         } catch (SQLException exception) {
-            String message = "Failed to update the order with id: " + orderId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to update the order with id: "
+                    + orderId, exception);
         }
         deleteProducts(orderId);
         return addProducts(order);
@@ -127,9 +125,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return false;
         } catch (SQLException exception) {
-            String message = "Failed to delete the order with id: " + id;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to delete the order with id: "
+                    + id, exception);
         }
     }
 
@@ -152,9 +149,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             logger.info("The products were successfully added to the order with id: " + orderId);
             return order;
         } catch (SQLException exception) {
-            String message = "Failed to add the products in the order with id: " + orderId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to add the products in the order "
+                    + "with id: " + orderId, exception);
         }
     }
 
@@ -195,7 +191,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return products;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the products "
+            throw new DatabaseDataExchangeException("Failed to get the products "
                     + "of the order with id: " + orderId, exception);
         }
     }
@@ -211,9 +207,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
                         + " were successfully deleted");
             }
         } catch (SQLException exception) {
-            String message = "Failed to delete the products from the order with id: " + orderId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to delete the products "
+                    + "from the order with id: " + orderId, exception);
         }
     }
 }

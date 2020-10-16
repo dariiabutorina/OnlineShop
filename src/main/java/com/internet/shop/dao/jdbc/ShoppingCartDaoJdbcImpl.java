@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.ShoppingCartDao;
-import com.internet.shop.exceptions.DatabaseDataExchangeFailedException;
+import com.internet.shop.exceptions.DatabaseDataExchangeException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Product;
 import com.internet.shop.model.ShoppingCart;
@@ -32,7 +32,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 shoppingCart = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeException("Failed to get data", exception);
         }
         return fillShoppingCartWithProducts(shoppingCart);
     }
@@ -52,9 +52,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             logger.info("The shopping cart - " + shoppingCart + " was created successfully");
         } catch (SQLException exception) {
-            String message = "Failed to create the shopping cart: " + shoppingCart;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to create the shopping cart: "
+                    + shoppingCart, exception);
         }
         return shoppingCart;
     }
@@ -71,7 +70,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 shoppingCart = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the shopping cart "
+            throw new DatabaseDataExchangeException("Failed to get the shopping cart "
                     + "with id: " + id, exception);
         }
         return fillShoppingCartWithProducts(shoppingCart);
@@ -88,7 +87,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 shoppingCarts.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeException("Failed to get data", exception);
         }
         return fillListOfCartsWithProducts(shoppingCarts);
     }
@@ -106,9 +105,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             statement.executeUpdate();
             logger.info("The shopping cart " + shoppingCart + " was updated successfully");
         } catch (SQLException exception) {
-            String message = "Failed to update the shopping cart with id: " + shoppingCartId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to update the shopping cart with id: "
+                    + shoppingCartId, exception);
         }
         deleteProducts(shoppingCartId);
         return addProducts(shoppingCart);
@@ -128,9 +126,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             return false;
         } catch (SQLException exception) {
-            String message = "Failed to delete the shopping cart with id: " + id;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to delete the shopping cart "
+                    + "with id: " + id, exception);
         }
     }
 
@@ -169,10 +166,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                     + shoppingCart);
             return shoppingCart;
         } catch (SQLException exception) {
-            String message = "Failed to add the products to the shopping cart with id: "
-                    + shoppingCartId;
-            logger.warn(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to add the products "
+                    + "to the shopping cart with id: " + shoppingCartId, exception);
         }
     }
 
@@ -198,7 +193,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             }
             return products;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the products "
+            throw new DatabaseDataExchangeException("Failed to get the products "
                     + "from the shopping cart with id: " + shoppingCartId, exception);
         }
     }
@@ -214,10 +209,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                 logger.info("The products were successfully deleted ");
             }
         } catch (SQLException exception) {
-            String message = "Failed to delete the products from the shopping cart with id = "
-                    + shoppingCartId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to delete the products "
+                    + "from the shopping cart with id = " + shoppingCartId, exception);
         }
     }
 }

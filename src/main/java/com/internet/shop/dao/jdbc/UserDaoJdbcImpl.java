@@ -1,7 +1,7 @@
 package com.internet.shop.dao.jdbc;
 
 import com.internet.shop.dao.interfaces.UserDao;
-import com.internet.shop.exceptions.DatabaseDataExchangeFailedException;
+import com.internet.shop.exceptions.DatabaseDataExchangeException;
 import com.internet.shop.library.Dao;
 import com.internet.shop.model.Role;
 import com.internet.shop.model.User;
@@ -34,7 +34,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 user = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the user "
+            throw new DatabaseDataExchangeException("Failed to get the user "
                     + "with login: " + login, exception);
         }
         return addRolesToOptionalUser(user);
@@ -58,9 +58,8 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             logger.info("The user " + user + " was created successfully");
         } catch (SQLException exception) {
-            String message = "Failed to create the user: " + user;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to create the user: "
+                    + user, exception);
         }
         return addRoles(user);
     }
@@ -77,7 +76,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 user = extractValue(resultSet);
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the user "
+            throw new DatabaseDataExchangeException("Failed to get the user "
                     + "with id: " + id, exception);
         }
         return addRolesToOptionalUser(user);
@@ -94,7 +93,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 users.add(extractValue(resultSet));
             }
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get data", exception);
+            throw new DatabaseDataExchangeException("Failed to get data", exception);
         }
         for (int index = 0; index < users.size(); index++) {
             users.get(index).setRoles(getRoles(users.get(index).getId()));
@@ -118,9 +117,8 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.executeUpdate();
             logger.info("The user with id " + userId + " was updated successfully");
         } catch (SQLException exception) {
-            String message = "Failed to update the user with id: " + userId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to update the user with id: "
+                    + userId, exception);
         }
         deleteRoles(userId);
         return addRoles(user);
@@ -139,9 +137,8 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return false;
         } catch (SQLException exception) {
-            String message = "Failed to delete the user with id: " + id;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to delete the user with id: "
+                    + id, exception);
         }
     }
 
@@ -171,9 +168,8 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             logger.info("The roles were successfully added to the user: " + user);
         } catch (SQLException exception) {
-            String message = "Failed to add the roles to the user: " + user;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to add the roles to the user: "
+                    + user, exception);
         }
         user.setRoles(getRoles(user.getId()));
         return user;
@@ -203,7 +199,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return roles;
         } catch (SQLException exception) {
-            throw new DatabaseDataExchangeFailedException("Failed to get the roles "
+            throw new DatabaseDataExchangeException("Failed to get the roles "
                     + "of the user with id: " + userId, exception);
         }
     }
@@ -219,9 +215,8 @@ public class UserDaoJdbcImpl implements UserDao {
                         + " were successfully deleted");
             }
         } catch (SQLException exception) {
-            String message = "Failed to delete the roles of the user with id: " + userId;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeFailedException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to delete the roles "
+                    + "of the user with id: " + userId, exception);
         }
     }
 }
