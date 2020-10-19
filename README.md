@@ -6,8 +6,6 @@ Simple **web-site**, based on the **RDBMS MySQL**
 
 (MySQLWorkbench was used during creating the project) using **JDBC**
 
-(There was also implemented a plain implementation with the Storage class, without using JDBC)
-
 The inner structure was created according to **N-Tier architecture** and **SOLID principles**
 
 **RBAC** was chosen as the authorization mechanism managed with **filters**
