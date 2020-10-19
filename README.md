@@ -50,7 +50,7 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
 
 - **Tomcat (Local)**:
 
-  **Deployment** — war_exploded, context address — "/"
+  **Deployment** — `war_exploded`, `context address — "/"`
 
 - **Database**:
 
@@ -60,15 +60,15 @@ The inner structure was created according to **N-Tier architecture** and **SOLID
   
 - **Authorizing as an admin**:
 
-  On the **login page** ("Sign In" button) press the "Create Admin" button
+  On the **login page** (`"Sign In"` button) press the `"Create Admin"` button
   
-  Then type in "Admin" for the **login** and "Admin007" for the **password** on the login page
+  Then type in `"Admin"` for the **login** and `"Admin007"` for the **password** on the login page
 
 - **Authorizing as a user**:
 
-  **Register** at first — press the "Sign Up" button on the login page or navigation bar
+  **Register** at first — press the `"Sign Up"` button on the login page or navigation bar
   
-  Then **sign in on** the login page ("Sign In" button)
+  Then **sign in on** the login page (`"Sign In"` button)
   
 # Author:
 
